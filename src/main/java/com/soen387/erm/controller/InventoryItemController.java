@@ -29,7 +29,7 @@ public class InventoryItemController {
         placeholderItems.put(5, new InventoryItem(5, "item5", InventoryItemType.Unknown, "Misc item 25"));
     }
 
-    @RequestMapping(path = "/", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public Map<Integer, InventoryItem> getInventory() {
         return placeholderItems;
     }
