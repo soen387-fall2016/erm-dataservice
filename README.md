@@ -26,9 +26,13 @@ You can then run the JAR with ```java -jar build/libs/erm-dataservice-0.0.1-SNAP
 ** Replace ```0.0.1``` with the current version of the project, which is specified in ```gradle.properties```.
 
 ### Deployable WAR
-
+TODO ...
 
 ## Interface
 
+### Inventory
+Access the inventory in JSON format at ```http://<server-ip-and-port>/inventory```.
+
+To see only a specific item, go to  ```http://<server-ip-and-port>/inventory/<item-id>```.
 
 &copy; 2016
