@@ -1,6 +1,8 @@
 package com.soen387.erm.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -10,13 +12,20 @@ import javax.persistence.Id;
 public class InventoryItemType {
 
     @Id
-    String name;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private String name;
 
     public String getName() {
         return name;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public String toString() {
-        return "InventoryItemType " + getName();
+        return "InventoryItemType " + getName() + "[ID " + getId() + "]";
     }
 }

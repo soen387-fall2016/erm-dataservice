@@ -37,6 +37,6 @@ public class InventoryItem {
 
     @Override
     public String toString() {
-        return "InventoryItem toString TODO";
+        return "InventoryItem " + getName() + "[ID " + getId() + "]";
     }
 }
