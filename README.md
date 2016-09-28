@@ -28,11 +28,32 @@ You can then run the JAR with ```java -jar build/libs/erm-dataservice-0.0.1-SNAP
 ### Deployable WAR
 TODO ...
 
-## Interface
+## API Interface
+Spring automatically generates a HATEOS REST API based on the provided entity classes.
 
-### Inventory
-Access the inventory in JSON format at ```http://<server-ip-and-port>/inventory```.
+Access the API root at ```http://<server-ip-and-port>/api```.
 
-To see only a specific item, go to  ```http://<server-ip-and-port>/inventory/<item-id>```.
+The responses returned are of type hal+json and contain links to navigate between resources.
+
+### Inventory Items
+Access the inventory list at ```http://<server-ip-and-port>/api/inventoryItems```.
+
+Follow the links returned there to view indivitual inventory items.
+
+To create a new item, simply POST a json body of the form:
+
+```
+{
+    "name": "itemName",
+    "type": "itemType",
+    "content": "itemContent"
+}
+```
+
+Note that the itemType must also be created, which can be done by POSTing to ```http://<server-ip-and-port>/api/inventoryItemTypes```.
+
+```{
+    "name": "itemTypeName"
+}```
 
 &copy; 2016
