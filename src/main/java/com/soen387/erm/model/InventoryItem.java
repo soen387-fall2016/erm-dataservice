@@ -1,22 +1,25 @@
 package com.soen387.erm.model;
 
+import javax.persistence.*;
+
 /**
  * Created by jeremybrown on 2016-09-26.
  */
+@Entity
 public class InventoryItem {
-    private final long id;
-    private final String name;
-    private final InventoryItemType type;
-    private final String content;
 
-    public InventoryItem(long id, String  name, InventoryItemType type, String content) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-        this.content = content;
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-    public long getId() {
+    private String name;
+
+    @ManyToOne
+    private InventoryItemType type;
+
+    private String content;
+
+    public Long getId() {
         return id;
     }
 
@@ -30,5 +33,10 @@ public class InventoryItem {
 
     public String getContent() {
         return content;
+    }
+
+    @Override
+    public String toString() {
+        return "InventoryItem toString TODO";
     }
 }

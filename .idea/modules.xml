@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/erm-dataservice.iml" filepath="$PROJECT_DIR$/.idea/modules/erm-dataservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/erm-dataservice.iml" filepath="$PROJECT_DIR$/erm-dataservice.iml" />
     </modules>
   </component>
 </project>
