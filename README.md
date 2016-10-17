@@ -1,4 +1,4 @@
-# erm-dataservices
+# erm-dataservice
 
 ##### Provides data storage & retrieval services to the SOEN 387 Fall 2016 Group Project
 

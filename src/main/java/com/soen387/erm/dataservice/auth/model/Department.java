@@ -1,4 +1,4 @@
-package com.soen387.erm.model;
+package com.soen387.erm.dataservice.auth.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,10 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * Created by jeremybrown on 2016-09-26.
+ * Created by jeremybrown on 2016-10-17.
  */
 @Entity
-public class InventoryItemType {
+public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,15 +17,11 @@ public class InventoryItemType {
 
     private String name;
 
-    public String getName() {
-        return name;
-    }
-
     public Long getId() {
         return id;
     }
 
-    public String toString() {
-        return "InventoryItemType " + getName() + "[ID " + getId() + "]";
+    public String getName() {
+        return name;
     }
 }
