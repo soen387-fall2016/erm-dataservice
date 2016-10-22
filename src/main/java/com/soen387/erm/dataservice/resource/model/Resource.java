@@ -6,6 +6,7 @@ import javax.persistence.*;
  * Created by jeremybrown on 2016-09-26.
  */
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 public abstract class Resource {
 
     @Id
@@ -18,8 +19,6 @@ public abstract class Resource {
 
     private Boolean available;
 
-    private Room room;
-
     private Boolean moveable;
 
     public String getName() {
@@ -28,10 +27,6 @@ public abstract class Resource {
 
     public Boolean getAvailable() {
         return available;
-    }
-
-    public Room getRoom() {
-        return room;
     }
 
     public Boolean getMoveable() {

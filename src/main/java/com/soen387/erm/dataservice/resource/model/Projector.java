@@ -6,14 +6,10 @@ import javax.persistence.*;
  * Created by jeremybrown on 2016-10-17.
  */
 @Entity
-@Inheritance(strategy= InheritanceType.JOINED)
-public class Projector extends Resource {
+public class Projector extends LocatableResource {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    private ProjectorResolution resolution;
+    @Embedded
+    private Dimensions resolution;
 
     private Boolean dviInput;
 
@@ -21,7 +17,7 @@ public class Projector extends Resource {
 
     private Boolean hdmiInput;
 
-    public ProjectorResolution getResolution() {
+    public Dimensions getResolution() {
         return resolution;
     }
 
@@ -37,14 +33,4 @@ public class Projector extends Resource {
         return hdmiInput;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    class ProjectorResolution {
-
-        private Long width;
-
-        private Long height;
-    }
 }

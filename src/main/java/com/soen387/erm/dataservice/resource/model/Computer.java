@@ -6,17 +6,13 @@ import javax.persistence.*;
  * Created by jeremybrown on 2016-10-17.
  */
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
-public class Computer extends Resource {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class Computer extends LocatableResource {
 
     private String hostname;
 
     private String machineType;
 
+    @OneToOne
     private ComputerOS operatingSystem;
 
     private String manufacturer;
@@ -38,10 +34,6 @@ public class Computer extends Resource {
     private Boolean wirelessNetworking;
 
     private Boolean wiredNetworking;
-
-    public Long getId() {
-        return id;
-    }
 
     public String getHostname() {
         return hostname;

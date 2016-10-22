@@ -22,6 +22,7 @@ public class User {
 
     private String phone;
 
+    @ManyToOne
     private Department department;
 
     @ManyToMany

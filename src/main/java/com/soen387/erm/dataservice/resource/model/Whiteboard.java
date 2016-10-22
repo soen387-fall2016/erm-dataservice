@@ -6,27 +6,12 @@ import javax.persistence.*;
  * Created by jeremybrown on 2016-10-17.
  */
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
-public class Whiteboard extends Resource {
+public class Whiteboard extends LocatableResource {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @Embedded
+    private Dimensions dimensions;
 
-    private WhiteboardDimensions dimensions;
-
-    public WhiteboardDimensions getDimensions() {
+    public Dimensions getDimensions() {
         return dimensions;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    class WhiteboardDimensions {
-
-        private long width;
-
-        private long height;
     }
 }
