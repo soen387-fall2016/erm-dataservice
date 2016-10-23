@@ -19,11 +19,12 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
 
-script: ./gradlew build bintrayUpload -PbintrayUser=$BINTRAY_USER -PbintrayApiKey=$BINTRAY_API_KEY -Pbranch=master -PbuildNumber=$TRAVIS_BUILD_NUMBER
+script: ./gradlew build bintrayUpload -PbintrayUser=${BINTRAY_USER} -PbintrayApiKey=${BINTRAY_API_KEY} -Pbranch=${TRAVIS_BRANCH} -PbuildNumber=${TRAVIS_BUILD_NUMBER}
 
 after_success:
+  - CI_VERSION=${TRAVIS_BRANCH}-${TRAVIS_BUILD_NUMBER}
   - bash <(curl -s https://codecov.io/bash)
   - docker --version  # document the version travis is using
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - docker build -t soen387fall2016/erm-dataservice:latest .
+  - docker build -t soen387fall2016/erm-dataservice:latest -t soen387fall2016/erm-dataservice:${CI_VERSION} .
   - docker push soen387fall2016/erm-dataservice:latest
