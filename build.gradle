@@ -4,9 +4,11 @@ buildscript {
 	}
 	repositories {
 		mavenCentral()
+        jcenter()
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
 	}
 }
 
@@ -14,10 +16,12 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'maven-publish'
 
 jar {
 	baseName = 'erm-dataservice'
-	version = project.property('version') + '-SNAPSHOT'
+	version = project.property('version')
 }
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -26,6 +30,39 @@ repositories {
 	mavenCentral()
 }
 
+publishing {
+    publications {
+        DataservicePublication(MavenPublication) {
+            from components.java
+            groupId 'com.soen387.erm'
+            artifactId 'erm-dataservice'
+            version project.property('version')
+        }
+    }
+}
+
+bintray {
+    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+    publications = ['DataservicePublication']
+    pkg {
+        repo = 'erm-maven'
+        name = 'erm-dataservice'
+        userOrg = 'soen387-fall2016'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/soen387-fall2016/erm-dataservice'
+
+        version {
+            name = project.property('version')
+            desc = 'ERM Dataservice'
+            released  = new Date()
+        }
+    }
+}
+
+bintrayUpload {
+    dependsOn 'bootRepackage'
+}
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
