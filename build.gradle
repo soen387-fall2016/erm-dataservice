@@ -2,13 +2,12 @@ buildscript {
 	ext {
 		springBootVersion = '1.4.1.RELEASE'
 	}
-	repositories {
-		mavenCentral()
+    repositories {
         jcenter()
-	}
+    }
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
+		classpath('com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7')
 	}
 }
 
@@ -19,15 +18,16 @@ apply plugin: 'spring-boot'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven-publish'
 
-jar {
-	baseName = 'erm-dataservice'
-	version = project.property('version')
-}
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-	mavenCentral()
+    jcenter()
+}
+
+jar {
+    baseName = 'erm-dataservice'
+    version = project.property('branch') + '-' + project.property('buildNumber')
 }
 
 publishing {
@@ -36,7 +36,7 @@ publishing {
             from components.java
             groupId 'com.soen387.erm'
             artifactId 'erm-dataservice'
-            version project.property('version')
+            version project.property('branch') + '-' + project.property('buildNumber')
         }
     }
 }
@@ -53,7 +53,7 @@ bintray {
         vcsUrl = 'https://github.com/soen387-fall2016/erm-dataservice'
 
         version {
-            name = project.property('version')
+            name = project.property('branch') + '-' + project.property('buildNumber')
             desc = 'ERM Dataservice'
             released  = new Date()
         }
@@ -67,7 +67,10 @@ bintrayUpload {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
-    compile 'org.springframework.data:spring-data-rest-hal-browser'
+//    compile ('org.springframework.data:spring-data-rest-hal-browser')
+    compile "io.springfox:springfox-swagger2:2.6.0"
+    compile('io.springfox:springfox-data-rest:2.6.0')
+    compile('io.springfox:springfox-swagger-ui:2.6.0')
 	compile("com.h2database:h2")
 //    runtime('mysql:mysql-connector-java') // replace h2 with this when we set up MySQL
 	testCompile('org.springframework.boot:spring-boot-starter-test')
