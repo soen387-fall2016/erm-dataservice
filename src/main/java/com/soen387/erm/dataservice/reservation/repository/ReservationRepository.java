@@ -1,17 +1,17 @@
 package com.soen387.erm.dataservice.reservation.repository;
 
-import com.soen387.erm.dataservice.auth.model.User;
 import com.soen387.erm.dataservice.reservation.model.Reservation;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
 /**
- * Created by ebrjere on 9/28/16.
+ * Created by jeremybrown on 2016-10-22.
  */
 public interface ReservationRepository extends CrudRepository<Reservation, Long> {
 
-    List<Reservation> findByUser(User user);
+    List<Reservation> findByUserUsername(@Param("username") String username);
 
-    // TODO
+    List<Reservation> findByResourcesId(@Param("resourceid") String resourceid);
 }
