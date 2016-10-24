@@ -85,6 +85,7 @@ task buildDockerImageTagLatest(type: Docker) {
     dependsOn 'bootRepackage'
     applicationName = project.property('application-name')
     tagVersion = 'latest'
+    push = true
     volume '/tmp'
     addFile 'build/libs/' + project.property('application-name') + '-' + project.property('branch') + '-' + project.property('buildNumber') + '.jar', project.property('application-name') + '.jar'
     exposePort 8080
@@ -96,6 +97,7 @@ task buildDockerImageTagVersion(type: Docker) {
     dependsOn 'bootRepackage'
     applicationName = project.property('application-name')
     tagVersion = project.property('branch') + '-' + project.property('buildNumber')
+    push = true
     volume '/tmp'
     addFile 'build/libs/' + project.property('application-name') + '-' + project.property('branch') + '-' + project.property('buildNumber') + '.jar', project.property('application-name') + '.jar'
     exposePort 8080
