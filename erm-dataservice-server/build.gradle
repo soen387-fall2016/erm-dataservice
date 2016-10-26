@@ -1,0 +1,103 @@
+/**
+ * build.gradle for erm-dataservice-server subproject
+ * Created by jeremybrown on 26/10/2016
+ **/
+
+buildscript {
+    ext {
+        springBootVersion = '1.4.1.RELEASE'
+        applicationName = 'erm-dataservice-server'
+    }
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath 'se.transmode.gradle:gradle-docker:1.2'
+    }
+}
+
+apply plugin: 'spring-boot'
+apply plugin: 'docker'
+
+jar {
+    baseName = "${applicationName}"
+    version = "${applicationVersion}"
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
+}
+
+publishing {
+    publications {
+        DataservicePublication(MavenPublication) {
+            from components.java
+            groupId project.property('groupId')
+            artifactId "${applicationName}"
+            version "${applicationVersion}"
+        }
+    }
+}
+
+bintray {
+    pkg {
+        repo = 'erm-maven'
+        name = "${applicationName}"
+        userOrg = 'soen387-fall2016'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/soen387-fall2016/erm-dataservice'
+
+        version {
+            name = "${applicationVersion}"
+            desc = 'ERM Dataservice Server'
+            released  = new Date()
+        }
+    }
+}
+
+bintrayUpload {
+    dependsOn 'bootRepackage'
+}
+
+docker {
+    baseImage "frolvlad/alpine-oraclejdk8:slim"
+    maintainer 'Jeremy Brown'
+}
+
+task buildDockerImageTagLatest(type: Docker) {
+    dependsOn 'bootRepackage'
+    applicationName = "${applicationName}"
+    tagVersion = 'latest'
+    volume '/tmp'
+    addFile "build/libs/${applicationName}-" + "${applicationVersion}.jar", "${applicationName}.jar"
+    exposePort 8080
+    runCommand 'sh -c "touch /' + "${applicationName}" + '.jar"'
+    entryPoint(["java","-Djava.security.egd=file:/dev/./urandom","-jar","/${applicationName}.jar"])
+}
+
+task buildDockerImageTagVersion(type: Docker) {
+    dependsOn 'bootRepackage'
+    applicationName = "${applicationName}"
+    tagVersion = "${applicationVersion}"
+    volume '/tmp'
+    addFile "build/libs/${applicationName}-" + "${applicationVersion}.jar", "${applicationName}.jar"
+    exposePort 8080
+    runCommand 'sh -c "touch /' + "${applicationName}" + '.jar"'
+    entryPoint(["java","-Djava.security.egd=file:/dev/./urandom","-jar","/${applicationName}.jar"])
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-data-rest')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+
+    compile "io.springfox:springfox-swagger2:2.6.0"
+    compile('io.springfox:springfox-data-rest:2.6.0')
+    compile('io.springfox:springfox-swagger-ui:2.6.0')
+
+	compile("com.h2database:h2")
+//    runtime('mysql:mysql-connector-java') // replace h2 with this when we set up MySQL
+}

@@ -49,6 +49,7 @@ public class DataserviceApplication {
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build()
+                // all below is optional
                 .pathMapping("/")
                 .directModelSubstitute(LocalDate.class,
                         String.class)

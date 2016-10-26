@@ -1,117 +1,44 @@
-buildscript {
-	ext {
-		springBootVersion = '1.4.1.RELEASE'
-	}
+/**
+ * build.gradle for erm-dataservice root project
+ * Created by jeremybrown on 26/10/2016
+**/
+
+allprojects {
+    apply plugin: 'com.jfrog.bintray'
+
     repositories {
         jcenter()
     }
-	dependencies {
-		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
-		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
-        classpath 'se.transmode.gradle:gradle-docker:1.2'
-	}
-}
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'spring-boot'
-apply plugin: 'com.jfrog.bintray'
-apply plugin: 'maven-publish'
-apply plugin: 'jacoco'
-apply plugin: 'docker'
-
-group = "soen387fall2016"
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-repositories {
-    jcenter()
-}
-
-jar {
-    baseName = project.property('application-name')
-    version = project.property('branch') + '-' + project.property('buildNumber')
-}
-
-jacocoTestReport {
-    reports {
-        xml.enabled true
-    }
-}
-
-publishing {
-    publications {
-        DataservicePublication(MavenPublication) {
-            from components.java
-            groupId 'com.soen387.erm'
-            artifactId project.property('application-name')
-            version project.property('branch') + '-' + project.property('buildNumber')
+    buildscript {
+        ext {
+            applicationVersion = project.property('branch') + '-' + project.property('buildNumber')
         }
     }
 }
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+    apply plugin: 'jacoco'
+    apply plugin: 'maven-publish'
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
+    }
+}
+
+group = "soen387fall2016"
 
 bintray {
     user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
     key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
     publications = ['DataservicePublication']
-		publish = true
-    pkg {
-        repo = 'erm-maven'
-        name = project.property('application-name')
-        userOrg = 'soen387-fall2016'
-        licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/soen387-fall2016/erm-dataservice'
-
-        version {
-            name = project.property('branch') + '-' + project.property('buildNumber')
-            desc = 'ERM Dataservice'
-            released  = new Date()
-        }
-    }
-}
-
-bintrayUpload {
-    dependsOn 'bootRepackage'
-}
-
-docker {
-    baseImage "frolvlad/alpine-oraclejdk8:slim"
-    maintainer 'Jeremy Brown'
-}
-
-task buildDockerImageTagLatest(type: Docker) {
-    dependsOn 'bootRepackage'
-    applicationName = project.property('application-name')
-    tagVersion = 'latest'
-    volume '/tmp'
-    addFile 'build/libs/' + project.property('application-name') + '-' + project.property('branch') + '-' + project.property('buildNumber') + '.jar', project.property('application-name') + '.jar'
-    exposePort 8080
-    runCommand 'sh -c "touch /' + project.property('application-name') + '.jar"'
-    entryPoint(["java","-Djava.security.egd=file:/dev/./urandom","-jar","/" + project.property('application-name') + ".jar"])
-}
-
-task buildDockerImageTagVersion(type: Docker) {
-    dependsOn 'bootRepackage'
-    applicationName = project.property('application-name')
-    tagVersion = project.property('branch') + '-' + project.property('buildNumber')
-    volume '/tmp'
-    addFile 'build/libs/' + project.property('application-name') + '-' + project.property('branch') + '-' + project.property('buildNumber') + '.jar', project.property('application-name') + '.jar'
-    exposePort 8080
-    runCommand 'sh -c "touch /' + project.property('application-name') + '.jar"'
-    entryPoint(["java","-Djava.security.egd=file:/dev/./urandom","-jar","/" + project.property('application-name') + ".jar"])
-}
-
-dependencies {
-	compile('org.springframework.boot:spring-boot-starter-data-rest')
-    compile('org.springframework.boot:spring-boot-starter-data-jpa')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
-
-    compile "io.springfox:springfox-swagger2:2.6.0"
-    compile('io.springfox:springfox-data-rest:2.6.0')
-    compile('io.springfox:springfox-swagger-ui:2.6.0')
-
-	compile("com.h2database:h2")
-//    runtime('mysql:mysql-connector-java') // replace h2 with this when we set up MySQL
+    publish = true
 }
