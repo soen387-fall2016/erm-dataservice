@@ -7,6 +7,8 @@ buildscript {
     ext {
         springBootVersion = '1.4.1.RELEASE'
         applicationName = 'erm-dataservice-server'
+        applicationDescription = 'ERM Dataservice Server'
+
     }
     repositories {
         jcenter()
@@ -33,7 +35,7 @@ jacocoTestReport {
 
 publishing {
     publications {
-        DataservicePublication(MavenPublication) {
+        DataserviceServerPublication(MavenPublication) {
             from components.java
             groupId project.property('groupId')
             artifactId "${applicationName}"
@@ -52,7 +54,7 @@ bintray {
 
         version {
             name = "${applicationVersion}"
-            desc = 'ERM Dataservice Server'
+            desc = "${applicationDescription}"
             released  = new Date()
         }
     }

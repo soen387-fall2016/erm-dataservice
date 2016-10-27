@@ -3,11 +3,10 @@
  * Created by jeremybrown on 26/10/2016
  **/
 
-
-
 buildscript {
     ext {
         applicationName = 'erm-dataservice-client'
+        applicationDescription = 'ERM Dataservice Client'
     }
 //    repositories {
 //        jcenter()
@@ -35,11 +34,27 @@ jacocoTestReport {
 
 publishing {
     publications {
-        DataservicePublication(MavenPublication) {
+        DataserviceClientPublication(MavenPublication) {
             from components.java
             groupId project.property('groupId')
             artifactId "${applicationName}"
             version "${applicationVersion}"
+        }
+    }
+}
+
+bintray {
+    pkg {
+        repo = 'erm-maven'
+        name = "${applicationName}"
+        userOrg = 'soen387-fall2016'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/soen387-fall2016/erm-dataservice'
+
+        version {
+            name = "${applicationVersion}"
+            desc = "${applicationDescription}"
+            released  = new Date()
         }
     }
 }
@@ -88,3 +103,4 @@ publishing {
 //
 //    testCompile "junit:junit:$junit_version"
 //}
+
