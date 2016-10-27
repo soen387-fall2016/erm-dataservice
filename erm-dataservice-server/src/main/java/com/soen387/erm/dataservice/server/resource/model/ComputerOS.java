@@ -1,4 +1,4 @@
-package com.soen387.erm.dataservice.resource.model;
+package com.soen387.erm.dataservice.server.resource.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

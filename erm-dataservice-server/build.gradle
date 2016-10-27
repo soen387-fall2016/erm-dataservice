@@ -6,8 +6,10 @@
 buildscript {
     ext {
         springBootVersion = '1.4.1.RELEASE'
+
         applicationName = 'erm-dataservice-server'
         applicationDescription = 'ERM Dataservice Server'
+        basePackageName = property('groupId') + ".${applicationName}.server"
 
     }
     repositories {

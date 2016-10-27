@@ -1,7 +1,7 @@
-package com.soen387.erm.dataservice.reservation.model;
+package com.soen387.erm.dataservice.server.reservation.model;
 
-import com.soen387.erm.dataservice.auth.model.User;
-import com.soen387.erm.dataservice.resource.model.Resource;
+import com.soen387.erm.dataservice.server.auth.model.User;
+import com.soen387.erm.dataservice.server.resource.model.Resource;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

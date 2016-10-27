@@ -1,4 +1,4 @@
-package com.soen387.erm.dataservice.auth.model;
+package com.soen387.erm.dataservice.server.auth.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,19 +9,19 @@ import javax.persistence.Id;
  * Created by jeremybrown on 2016-10-17.
  */
 @Entity
-public class UserRole {
+public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String userRoleHumanReadable;
+    private String name;
 
     public Long getId() {
         return id;
     }
 
-    public String getUserRoleHumanReadable() {
-        return userRoleHumanReadable;
+    public String getName() {
+        return name;
     }
 }

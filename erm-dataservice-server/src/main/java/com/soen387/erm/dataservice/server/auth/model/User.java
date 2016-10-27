@@ -1,4 +1,4 @@
-package com.soen387.erm.dataservice.auth.model;
+package com.soen387.erm.dataservice.server.auth.model;
 
 import javax.persistence.*;
 import java.util.List;

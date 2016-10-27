@@ -1,4 +1,4 @@
-package com.soen387.erm;
+package com.soen387.erm.dataservice.server;
 
 import com.fasterxml.classmate.TypeResolver;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
-package com.soen387.erm.dataservice.auth.repository;
+package com.soen387.erm.dataservice.server.auth.repository;
 
-import com.soen387.erm.dataservice.auth.model.UserRole;
+import com.soen387.erm.dataservice.server.auth.model.UserRole;
 import org.springframework.data.repository.CrudRepository;
 
 /**

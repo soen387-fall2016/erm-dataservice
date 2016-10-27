@@ -1,6 +1,6 @@
-package com.soen387.erm.dataservice.resource.repository;
+package com.soen387.erm.dataservice.server.resource.repository;
 
-import com.soen387.erm.dataservice.resource.model.Resource;
+import com.soen387.erm.dataservice.server.resource.model.Resource;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
