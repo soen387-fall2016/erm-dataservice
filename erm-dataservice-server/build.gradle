@@ -45,6 +45,7 @@ publishing {
 }
 
 bintray {
+    publications = ['DataserviceServerPublication']
     pkg {
         repo = 'erm-maven'
         name = "${applicationName}"

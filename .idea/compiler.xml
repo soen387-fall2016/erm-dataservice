@@ -19,10 +19,10 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="erm-dataservice_main" target="1.8" />
-      <module name="erm-dataservice_test" target="1.8" />
-      <module name="swagger-java-client_main" target="1.7" />
-      <module name="swagger-java-client_test" target="1.7" />
+      <module name="erm-dataservice-client_main" target="1.8" />
+      <module name="erm-dataservice-client_test" target="1.8" />
+      <module name="erm-dataservice-server_main" target="1.8" />
+      <module name="erm-dataservice-server_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

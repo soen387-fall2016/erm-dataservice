@@ -3,11 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/erm-dataservice.iml" filepath="$PROJECT_DIR$/.idea/modules/erm-dataservice.iml" />
-      <module fileurl="file://$PROJECT_DIR$/erm-dataservice-client/erm-dataservice-client.iml" filepath="$PROJECT_DIR$/erm-dataservice-client/erm-dataservice-client.iml" />
-      <module fileurl="file://$PROJECT_DIR$/erm-dataservice-server/erm-dataservice-server.iml" filepath="$PROJECT_DIR$/erm-dataservice-server/erm-dataservice-server.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/swagger-java-client.iml" filepath="$PROJECT_DIR$/.idea/modules/swagger-java-client.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/swagger-java-client_main.iml" filepath="$PROJECT_DIR$/.idea/modules/swagger-java-client_main.iml" group="swagger-java-client" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/swagger-java-client_test.iml" filepath="$PROJECT_DIR$/.idea/modules/swagger-java-client_test.iml" group="swagger-java-client" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/erm-dataservice-client/erm-dataservice-client.iml" filepath="$PROJECT_DIR$/.idea/modules/erm-dataservice-client/erm-dataservice-client.iml" group="erm-dataservice-client" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/erm-dataservice-client/erm-dataservice-client_main.iml" filepath="$PROJECT_DIR$/.idea/modules/erm-dataservice-client/erm-dataservice-client_main.iml" group="erm-dataservice-client" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/erm-dataservice-client/erm-dataservice-client_test.iml" filepath="$PROJECT_DIR$/.idea/modules/erm-dataservice-client/erm-dataservice-client_test.iml" group="erm-dataservice-client" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/erm-dataservice-server/erm-dataservice-server.iml" filepath="$PROJECT_DIR$/.idea/modules/erm-dataservice-server/erm-dataservice-server.iml" group="erm-dataservice-server" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/erm-dataservice-server/erm-dataservice-server_main.iml" filepath="$PROJECT_DIR$/.idea/modules/erm-dataservice-server/erm-dataservice-server_main.iml" group="erm-dataservice-server" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/erm-dataservice-server/erm-dataservice-server_test.iml" filepath="$PROJECT_DIR$/.idea/modules/erm-dataservice-server/erm-dataservice-server_test.iml" group="erm-dataservice-server" />
     </modules>
   </component>
 </project>
