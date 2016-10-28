@@ -50,7 +50,7 @@ public class DataserviceApplication {
                 .paths(PathSelectors.any())
                 .build()
                 // all below is optional
-                .pathMapping("/")
+                .pathMapping("/api")
                 .directModelSubstitute(LocalDate.class,
                         String.class)
                 .genericModelSubstitutes(ResponseEntity.class)
@@ -58,25 +58,25 @@ public class DataserviceApplication {
                         newRule(typeResolver.resolve(DeferredResult.class,
                                 typeResolver.resolve(ResponseEntity.class, WildcardType.class)),
                                 typeResolver.resolve(WildcardType.class)))
-                .useDefaultResponseMessages(false)
-                .globalResponseMessage(RequestMethod.GET,
-                        newArrayList(new ResponseMessageBuilder()
-                                .code(500)
-                                .message("500 message")
-                                .responseModel(new ModelRef("Error"))
-                                .build()))
+//                .useDefaultResponseMessages(false)
+//                .globalResponseMessage(RequestMethod.GET,
+//                        newArrayList(new ResponseMessageBuilder()
+//                                .code(500)
+//                                .message("500 message")
+//                                .responseModel(new ModelRef("Error"))
+//                                .build()))
                 .securitySchemes(newArrayList(apiKey()))
                 .securityContexts(newArrayList(securityContext()))
                 .enableUrlTemplating(true)
-                .globalOperationParameters(
-                        newArrayList(new ParameterBuilder()
-                                .name("someGlobalParameter")
-                                .description("Description of someGlobalParameter")
-                                .modelRef(new ModelRef("string"))
-                                .parameterType("query")
-                                .required(true)
-                                .build()))
-                .tags(new Tag("API", "All apis relating to pets"))
+//                .globalOperationParameters(
+//                        newArrayList(new ParameterBuilder()
+//                                .name("someGlobalParameter")
+//                                .description("Description of someGlobalParameter")
+//                                .modelRef(new ModelRef("string"))
+//                                .parameterType("query")
+//                                .required(true)
+//                                .build()))
+                .tags(new Tag("API", "ERM Data API"))
 //                .additionalModels(typeResolver.resolve(AdditionalModel.class))
                 ;
     }
