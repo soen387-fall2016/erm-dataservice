@@ -73,47 +73,18 @@ bintrayUpload {
 }
 
 task createDockerfile(type: Dockerfile) {
+    dependsOn 'bootRepackage'
+
     destFile = project.file('build/docker/Dockerfile')
     from "frolvlad/alpine-oraclejdk8:slim"
     maintainer 'Benjamin Muschko "benjamin.muschko@gmail.com"'
     volume '/tmp'
-    addFile "build/libs/${applicationName}-" + "${applicationVersion}.jar", "${applicationName}.jar"
+    addFile "build/libs/${applicationName}-${applicationVersion}.jar", "${applicationName}.jar"
     exposePort 8080
     runCommand 'sh -c "touch /' + "${applicationName}" + '.jar"'
-    entryPoint "java -Djava.security.egd=file:/dev/./urandom -jar /${applicationName}.jar"
+    runCommand 'sh -c "chmod 2777 /' + "${applicationName}" + '.jar"'
+    entryPoint 'java', '-Djava.security.egd=file:/dev/./urandom', '-jar', "${applicationName}" + '.jar', '--spring.profiles.active=prod'
 }
-
-//docker {
-//    baseImage "frolvlad/alpine-oraclejdk8:slim"
-//    maintainer 'Jeremy Brown'
-//}
-//
-//task buildDocker {
-//    dependsOn 'buildDockerImageTagLatest'
-//    dependsOn 'buildDockerImageTagVersion'
-//}
-//
-//task buildDockerImageTagLatest(type: Docker) {
-//    dependsOn 'bootRepackage'
-//    applicationName = "${applicationName}"
-//    tagVersion = 'latest'
-//    volume '/tmp'
-//    addFile "build/libs/${applicationName}-" + "${applicationVersion}.jar", "${applicationName}.jar"
-//    exposePort 8080
-//    runCommand 'sh -c "touch /' + "${applicationName}" + '.jar"'
-//    entryPoint(["java","-Djava.security.egd=file:/dev/./urandom","-jar","/${applicationName}.jar"])
-//}
-//
-//task buildDockerImageTagVersion(type: Docker) {
-//    dependsOn 'bootRepackage'
-//    applicationName = "${applicationName}"
-//    tagVersion = "${applicationVersion}"
-//    volume '/tmp'
-//    addFile "build/libs/${applicationName}-" + "${applicationVersion}.jar", "${applicationName}.jar"
-//    exposePort 8080
-//    runCommand 'sh -c "touch /' + "${applicationName}" + '.jar"'
-//    entryPoint(["java","-Djava.security.egd=file:/dev/./urandom","-jar","/${applicationName}.jar"])
-//}
 
 test {
     doFirst {
@@ -124,6 +95,12 @@ test {
 bootRun {
 //    args = ["--spring.profiles.active=test"]
     args = ["--spring.profiles.active=prod"]
+}
+
+bootRepackage {
+    doFirst {
+        System.setProperty('spring.profiles.active', 'prod')
+    }
 }
 
 dependencies {
