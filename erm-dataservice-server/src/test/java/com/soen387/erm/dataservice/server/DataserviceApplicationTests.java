@@ -1,4 +1,4 @@
-package com.soen387.erm;
+package com.soen387.erm.dataservice.server;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -8,21 +8,26 @@ buildscript {
         springBootVersion = '1.4.1.RELEASE'
 
         applicationName = 'erm-dataservice-server'
+        dbName = 'erm-dataservice-db'
         applicationDescription = 'ERM Dataservice Server'
         basePackageName = property('groupId') + ".${applicationName}.server"
-
     }
     repositories {
         jcenter()
     }
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
-        classpath 'se.transmode.gradle:gradle-docker:1.2'
+//        classpath 'se.transmode.gradle:gradle-docker:1.2'
+        classpath 'com.bmuschko:gradle-docker-plugin:3.0.3'
     }
 }
 
 apply plugin: 'spring-boot'
-apply plugin: 'docker'
+apply plugin: 'com.bmuschko.docker-remote-api'
+import com.bmuschko.gradle.docker.tasks.image.Dockerfile
+//apply plugin: 'docker'
+
+group = "soen387fall2016"
 
 jar {
     baseName = "${applicationName}"
@@ -67,31 +72,58 @@ bintrayUpload {
     dependsOn 'bootRepackage'
 }
 
-docker {
-    baseImage "frolvlad/alpine-oraclejdk8:slim"
-    maintainer 'Jeremy Brown'
-}
-
-task buildDockerImageTagLatest(type: Docker) {
-    dependsOn 'bootRepackage'
-    applicationName = "${applicationName}"
-    tagVersion = 'latest'
+task createDockerfile(type: Dockerfile) {
+    destFile = project.file('build/docker/Dockerfile')
+    from "frolvlad/alpine-oraclejdk8:slim"
+    maintainer 'Benjamin Muschko "benjamin.muschko@gmail.com"'
     volume '/tmp'
     addFile "build/libs/${applicationName}-" + "${applicationVersion}.jar", "${applicationName}.jar"
     exposePort 8080
     runCommand 'sh -c "touch /' + "${applicationName}" + '.jar"'
-    entryPoint(["java","-Djava.security.egd=file:/dev/./urandom","-jar","/${applicationName}.jar"])
+    entryPoint "java -Djava.security.egd=file:/dev/./urandom -jar /${applicationName}.jar"
 }
 
-task buildDockerImageTagVersion(type: Docker) {
-    dependsOn 'bootRepackage'
-    applicationName = "${applicationName}"
-    tagVersion = "${applicationVersion}"
-    volume '/tmp'
-    addFile "build/libs/${applicationName}-" + "${applicationVersion}.jar", "${applicationName}.jar"
-    exposePort 8080
-    runCommand 'sh -c "touch /' + "${applicationName}" + '.jar"'
-    entryPoint(["java","-Djava.security.egd=file:/dev/./urandom","-jar","/${applicationName}.jar"])
+//docker {
+//    baseImage "frolvlad/alpine-oraclejdk8:slim"
+//    maintainer 'Jeremy Brown'
+//}
+//
+//task buildDocker {
+//    dependsOn 'buildDockerImageTagLatest'
+//    dependsOn 'buildDockerImageTagVersion'
+//}
+//
+//task buildDockerImageTagLatest(type: Docker) {
+//    dependsOn 'bootRepackage'
+//    applicationName = "${applicationName}"
+//    tagVersion = 'latest'
+//    volume '/tmp'
+//    addFile "build/libs/${applicationName}-" + "${applicationVersion}.jar", "${applicationName}.jar"
+//    exposePort 8080
+//    runCommand 'sh -c "touch /' + "${applicationName}" + '.jar"'
+//    entryPoint(["java","-Djava.security.egd=file:/dev/./urandom","-jar","/${applicationName}.jar"])
+//}
+//
+//task buildDockerImageTagVersion(type: Docker) {
+//    dependsOn 'bootRepackage'
+//    applicationName = "${applicationName}"
+//    tagVersion = "${applicationVersion}"
+//    volume '/tmp'
+//    addFile "build/libs/${applicationName}-" + "${applicationVersion}.jar", "${applicationName}.jar"
+//    exposePort 8080
+//    runCommand 'sh -c "touch /' + "${applicationName}" + '.jar"'
+//    entryPoint(["java","-Djava.security.egd=file:/dev/./urandom","-jar","/${applicationName}.jar"])
+//}
+
+test {
+    doFirst {
+        System.setProperty('spring.profiles.active', 'test')
+    }
+}
+
+bootRun {
+//    args = ["--spring.profiles.active=test"]
+    args = ["--spring.profiles.active=prod"]
 }
 
 dependencies {
@@ -103,6 +135,6 @@ dependencies {
     compile('io.springfox:springfox-data-rest:2.6.0')
     compile('io.springfox:springfox-swagger-ui:2.6.0')
 
-	compile("com.h2database:h2")
-//    runtime('mysql:mysql-connector-java') // replace h2 with this when we set up MySQL
+	testCompile("com.h2database:h2")
+    compile('mysql:mysql-connector-java')
 }

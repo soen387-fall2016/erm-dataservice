@@ -5,7 +5,6 @@
 
 allprojects {
 
-
     repositories {
         jcenter()
     }
@@ -40,5 +39,3 @@ buildscript {
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
     }
 }
-
-group = "soen387fall2016"

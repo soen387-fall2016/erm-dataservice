@@ -9,7 +9,17 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="erm-dataservice-client_main" />
+    <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-web:" level="project" />
+    <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.4.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.jvnet.mimepull:mimepull:1.9.3" level="project" />
+    <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.4.2" level="project" />
+    <orderEntry type="library" name="Gradle: junit:junit:4.8.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.sun.jersey:jersey-core:1.18" level="project" />
+    <orderEntry type="library" name="Gradle: com.fasterxml.jackson.datatype:jackson-datatype-joda:2.1.5" level="project" />
+    <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.4.2" level="project" />
+    <orderEntry type="library" name="Gradle: com.sun.jersey:jersey-client:1.18" level="project" />
+    <orderEntry type="library" name="Gradle: joda-time:joda-time:2.3" level="project" />
+    <orderEntry type="library" name="Gradle: com.sun.jersey.contribs:jersey-multipart:1.18" level="project" />
   </component>
   <component name="TestModuleProperties" production-module="erm-dataservice-client_main" />
 </module>

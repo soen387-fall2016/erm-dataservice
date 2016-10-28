@@ -1,0 +1,14 @@
+version: '2'
+services:
+  server:
+    image: 'soen387fall2016/erm-dataservice-server'
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mariadb
+  mariadb:
+    image: 'soen387fall2016/erm-dataservice-db'
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
