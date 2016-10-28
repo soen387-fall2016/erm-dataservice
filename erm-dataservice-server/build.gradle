@@ -93,8 +93,8 @@ test {
 }
 
 bootRun {
-//    args = ["--spring.profiles.active=test"]
-    args = ["--spring.profiles.active=prod"]
+    args = ["--spring.profiles.active=test"]
+//    args = ["--spring.profiles.active=prod"]
 }
 
 bootRepackage {
@@ -112,6 +112,6 @@ dependencies {
     compile('io.springfox:springfox-data-rest:2.6.0')
     compile('io.springfox:springfox-swagger-ui:2.6.0')
 
-	testCompile("com.h2database:h2")
+	compile("com.h2database:h2")
     compile('mysql:mysql-connector-java')
 }

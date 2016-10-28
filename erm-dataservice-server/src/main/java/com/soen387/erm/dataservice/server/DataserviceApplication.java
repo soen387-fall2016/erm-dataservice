@@ -50,7 +50,7 @@ public class DataserviceApplication {
                 .paths(PathSelectors.any())
                 .build()
                 // all below is optional
-                .pathMapping("/api")
+                .pathMapping("/")
                 .directModelSubstitute(LocalDate.class,
                         String.class)
                 .genericModelSubstitutes(ResponseEntity.class)
