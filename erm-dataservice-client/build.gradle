@@ -62,7 +62,7 @@ bintray {
 }
 
 swagger {
-    inputSpec = 'http://localhost:8080/v2/api-docs'
+    inputSpec = 'http://54.218.174.224:8080/v2/api-docs'
 
     output = 'build/swagger'
     language = 'java'

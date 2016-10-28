@@ -54,6 +54,7 @@ public class DataserviceApplication {
                 .directModelSubstitute(LocalDate.class,
                         String.class)
                 .genericModelSubstitutes(ResponseEntity.class)
+                .forCodeGeneration(true)
                 .alternateTypeRules(
                         newRule(typeResolver.resolve(DeferredResult.class,
                                 typeResolver.resolve(ResponseEntity.class, WildcardType.class)),
