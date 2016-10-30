@@ -5,7 +5,7 @@ import javax.persistence.ManyToMany;
 /**
  * Created by jeremybrown on 2016-10-22.
  */
-public abstract class LocatableResource extends Resource {
+public abstract class LocatableAbstractResource extends AbstractResource {
 
     @ManyToMany
     private Room room;

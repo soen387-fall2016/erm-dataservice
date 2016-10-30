@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by jeremybrown on 2016-10-17.
  */
 @Entity
-public class Whiteboard extends LocatableResource {
+public class Whiteboard extends LocatableAbstractResource {
 
     @Embedded
     private Dimensions dimensions;

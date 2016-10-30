@@ -43,7 +43,7 @@ public class DataserviceApplication {
 	}
 
     @Bean
-    public Docket petApi() {
+    public Docket Api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.any())
@@ -51,14 +51,14 @@ public class DataserviceApplication {
                 .build()
                 // all below is optional
                 .pathMapping("/")
-                .directModelSubstitute(LocalDate.class,
-                        String.class)
-                .genericModelSubstitutes(ResponseEntity.class)
+//                .directModelSubstitute(LocalDate.class,
+//                        String.class)
+//                .genericModelSubstitutes(ResponseEntity.class)
                 .forCodeGeneration(true)
-                .alternateTypeRules(
-                        newRule(typeResolver.resolve(DeferredResult.class,
-                                typeResolver.resolve(ResponseEntity.class, WildcardType.class)),
-                                typeResolver.resolve(WildcardType.class)))
+//                .alternateTypeRules(
+//                        newRule(typeResolver.resolve(DeferredResult.class,
+//                                typeResolver.resolve(ResponseEntity.class, WildcardType.class)),
+//                                typeResolver.resolve(WildcardType.class)))
 //                .useDefaultResponseMessages(false)
 //                .globalResponseMessage(RequestMethod.GET,
 //                        newArrayList(new ResponseMessageBuilder()
@@ -68,7 +68,7 @@ public class DataserviceApplication {
 //                                .build()))
                 .securitySchemes(newArrayList(apiKey()))
                 .securityContexts(newArrayList(securityContext()))
-                .enableUrlTemplating(true)
+//                .enableUrlTemplating(true)
 //                .globalOperationParameters(
 //                        newArrayList(new ParameterBuilder()
 //                                .name("someGlobalParameter")

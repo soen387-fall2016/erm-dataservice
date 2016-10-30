@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by jeremybrown on 2016-10-17.
  */
 @Entity
-public class Projector extends LocatableResource {
+public class Projector extends LocatableAbstractResource {
 
     @Embedded
     private Dimensions resolution;

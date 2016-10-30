@@ -23,6 +23,8 @@ plugins {
 }
 
 jar {
+    dependsOn 'swagger'
+
     baseName = "${applicationName}"
     version = "${applicationVersion}"
 }
@@ -73,8 +75,6 @@ swagger {
             'apiPackage'       : "${basePackageName}".toString() + ".api",
             'dateLibrary'      : 'java8'
     ]
-    apis = ''
-    models = ''
 }
 
 sourceSets {

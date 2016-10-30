@@ -1,7 +1,7 @@
 package com.soen387.erm.dataservice.server.reservation.model;
 
 import com.soen387.erm.dataservice.server.auth.model.User;
-import com.soen387.erm.dataservice.server.resource.model.Resource;
+import com.soen387.erm.dataservice.server.resource.model.AbstractResource;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -21,7 +21,7 @@ public class Reservation {
     private User user;
 
     @ManyToMany
-    private List<Resource> resources;
+    private List<AbstractResource> resources;
 
     private LocalDateTime startDateTime;
 

@@ -1,5 +1,8 @@
 package com.soen387.erm.dataservice.server.auth.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.hateoas.ResourceSupport;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +18,7 @@ public class UserRole {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @JsonProperty(value="roleName")
     private String userRoleHumanReadable;
 
     public Long getId() {

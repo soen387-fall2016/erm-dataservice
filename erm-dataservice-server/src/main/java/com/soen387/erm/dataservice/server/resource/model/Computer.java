@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by jeremybrown on 2016-10-17.
  */
 @Entity
-public class Computer extends LocatableResource {
+public class Computer extends LocatableAbstractResource {
 
     private String hostname;
 

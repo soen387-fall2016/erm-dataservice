@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
-public abstract class Resource {
+public abstract class AbstractResource {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -43,6 +43,6 @@ public abstract class Resource {
 
     @Override
     public String toString() {
-        return "Resource " + getName();
+        return "AbstractResource " + getName();
     }
 }

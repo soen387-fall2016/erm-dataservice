@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by jeremybrown on 2016-10-17.
  */
 @Entity
-public class Room extends Resource {
+public class Room extends AbstractResource {
 
     private String roomNumber;
 

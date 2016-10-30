@@ -1,5 +1,7 @@
 package com.soen387.erm.dataservice.server.auth.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -16,6 +18,7 @@ public class User {
 
     private String lastName;
 
+    @JsonIgnore
     private String passwordEncrypted;
 
     private String email;
