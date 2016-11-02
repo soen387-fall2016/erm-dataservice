@@ -11,20 +11,10 @@ buildscript {
     }
     repositories {
         jcenter()
-        mavenCentral()
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
     }
 }
 
-plugins {
-    id 'org.detoeuf.swagger-codegen' version '1.6.3'
-}
-
 jar {
-    dependsOn 'swagger'
-
     baseName = "${applicationName}"
     version = "${applicationVersion}"
 }
@@ -63,45 +53,25 @@ bintray {
     }
 }
 
-swagger {
-    inputSpec = 'http://54.218.174.224:8080/v2/api-docs'
-
-    output = 'build/swagger'
-    language = 'java'
-
-    additionalProperties = [
-            'invokerPackage'   : "${basePackageName}".toString(),
-            'modelPackage'     : "${basePackageName}".toString() + ".model",
-            'apiPackage'       : "${basePackageName}".toString() + ".api",
-            'dateLibrary'      : 'java8'
-    ]
-}
-
-sourceSets {
-    swagger {
-        java {
-            srcDir file("${project.buildDir.path}/swagger/src/main/java")
-        }
-    }
-}
-
 ext {
     jackson_version = '2.4.2'
     jersey_version = '1.18'
     jodatime_version = '2.3'
-    junit_version = '4.8.1'
+
 }
 
 dependencies {
-    swaggerCompile 'org.springframework.boot:spring-boot-starter-web'
-
-    compile "com.sun.jersey:jersey-client:$jersey_version"
-    compile "com.sun.jersey.contribs:jersey-multipart:$jersey_version"
-    compile "com.fasterxml.jackson.core:jackson-core:$jackson_version"
-    compile "com.fasterxml.jackson.core:jackson-annotations:$jackson_version"
-    compile "com.fasterxml.jackson.core:jackson-databind:$jackson_version"
-    compile "com.fasterxml.jackson.datatype:jackson-datatype-joda:2.1.5"
+//    compile "com.sun.jersey:jersey-client:$jersey_version"
+//    compile "com.sun.jersey.contribs:jersey-multipart:$jersey_version"
+//
+//    compile "com.fasterxml.jackson.core:jackson-core:$jackson_version"
+//    compile "com.fasterxml.jackson.core:jackson-annotations:$jackson_version"
+//    compile "com.fasterxml.jackson.core:jackson-databind:$jackson_version"
+//    compile "com.fasterxml.jackson.datatype:jackson-datatype-joda:2.1.5"
     compile "joda-time:joda-time:$jodatime_version"
 
-    testCompile "junit:junit:$junit_version"
+//    compile 'org.springframework:spring-web:4.3.3.RELEASE'
+    compile 'org.springframework.hateoas:spring-hateoas:0.20.0.RELEASE'
+    compile 'org.springframework.plugin:spring-plugin-core:1.2.0.RELEASE'
+    compile 'com.jayway.jsonpath:json-path:2.0.0'
 }

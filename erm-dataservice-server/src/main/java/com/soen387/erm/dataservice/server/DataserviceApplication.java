@@ -4,6 +4,7 @@ import com.fasterxml.classmate.TypeResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +37,7 @@ import static springfox.documentation.schema.AlternateTypeRules.newRule;
 @SpringBootApplication
 @EnableSwagger2
 @Import({springfox.documentation.spring.data.rest.configuration.SpringDataRestConfiguration.class})
+@EntityScan("com.soen387.erm.dataservice.common.model")
 public class DataserviceApplication {
 
 	public static void main(String[] args) {

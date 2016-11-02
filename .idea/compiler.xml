@@ -22,6 +22,8 @@
       <module name="erm-dataservice-client_main" target="1.8" />
       <module name="erm-dataservice-client_swagger" target="1.8" />
       <module name="erm-dataservice-client_test" target="1.8" />
+      <module name="erm-dataservice-common_main" target="1.8" />
+      <module name="erm-dataservice-common_test" target="1.8" />
       <module name="erm-dataservice-server_main" target="1.8" />
       <module name="erm-dataservice-server_test" target="1.8" />
     </bytecodeTargetLevel>

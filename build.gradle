@@ -12,9 +12,13 @@ allprojects {
     buildscript {
         ext {
             applicationVersion = project.property('branch') + '-' + project.property('buildNumber')
+            junit_version = '4.8.1'
+
         }
     }
 }
+
+
 
 subprojects {
     apply plugin: 'java'
@@ -28,6 +32,13 @@ subprojects {
         user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
         key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
         publish = true
+    }
+
+    if (it.name != 'erm-dataservice-common') {
+        dependencies {
+            compile project(':erm-dataservice-common')
+            testCompile "junit:junit:$junit_version"
+        }
     }
 }
 

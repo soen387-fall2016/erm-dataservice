@@ -1,1 +1,3 @@
-include 'erm-dataservice-server', 'erm-dataservice-client'
+include 'erm-dataservice-server'
+include 'erm-dataservice-client'
+include 'erm-dataservice-common'

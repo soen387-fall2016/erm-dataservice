@@ -9,17 +9,30 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-web:" level="project" />
-    <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.4.2" level="project" />
-    <orderEntry type="library" name="Gradle: org.jvnet.mimepull:mimepull:1.9.3" level="project" />
-    <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.4.2" level="project" />
-    <orderEntry type="library" name="Gradle: junit:junit:4.8.1" level="project" />
-    <orderEntry type="library" name="Gradle: com.sun.jersey:jersey-core:1.18" level="project" />
-    <orderEntry type="library" name="Gradle: com.fasterxml.jackson.datatype:jackson-datatype-joda:2.1.5" level="project" />
-    <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.4.2" level="project" />
-    <orderEntry type="library" name="Gradle: com.sun.jersey:jersey-client:1.18" level="project" />
+    <orderEntry type="module" module-name="erm-dataservice-client_main" />
+    <orderEntry type="module" module-name="erm-dataservice-common_main" />
     <orderEntry type="library" name="Gradle: joda-time:joda-time:2.3" level="project" />
-    <orderEntry type="library" name="Gradle: com.sun.jersey.contribs:jersey-multipart:1.18" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework.plugin:spring-plugin-core:1.2.0.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: com.jayway.jsonpath:json-path:2.0.0" level="project" />
+    <orderEntry type="library" name="Gradle: junit:junit:4.8.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final" level="project" />
+    <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.3.2" level="project" />
+    <orderEntry type="library" name="Gradle: net.minidev:json-smart:2.1.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.3.0" level="project" />
+    <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.3.2" level="project" />
+    <orderEntry type="library" name="Gradle: aopalliance:aopalliance:1.0" level="project" />
+    <orderEntry type="library" name="Gradle: net.minidev:asm:1.0.2" level="project" />
+    <orderEntry type="library" name="Gradle: asm:asm:3.3.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework.hateoas:spring-hateoas:0.21.0.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-web:4.1.7.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-webmvc:4.1.7.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-aop:4.1.7.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-beans:4.1.7.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-context:4.1.7.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-core:4.1.7.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.slf4j:slf4j-api:1.7.21" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-expression:4.1.7.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: commons-logging:commons-logging:1.2" level="project" />
   </component>
   <component name="TestModuleProperties" production-module="erm-dataservice-client_main" />
 </module>
