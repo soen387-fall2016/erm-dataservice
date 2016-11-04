@@ -42,6 +42,7 @@ Collection<Resource<UserRole>> roles = client.getUserRoleApi().getCollectionByLi
 ```
 
 ## Including the client in your project
+** Replace 'master-18' with the latest or target version you want.
 
 ### Maven
 In your pom.xml file, add the following:
