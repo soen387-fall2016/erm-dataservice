@@ -24,14 +24,19 @@ subprojects {
     apply plugin: 'idea'
     apply plugin: 'jacoco'
     apply plugin: 'maven-publish'
-    apply plugin: 'com.jfrog.bintray'
 
-    bintray {
-        user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
-        key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
-        publish = true
+    // Add Bintray upload for server & client projects
+    if (it.name == 'erm-dataservice-server' || 'erm-dataservice-client') {
+        apply plugin: 'com.jfrog.bintray'
+
+        bintray {
+            user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+            key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+            publish = true
+        }
     }
 
+    // Add dependency on common project to all other projects
     if (it.name != 'erm-dataservice-common') {
         dependencies {
             compile project(':erm-dataservice-common')
