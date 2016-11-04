@@ -19,7 +19,7 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
 
-script: ./gradlew erm-dataservice-server:build erm-dataservice-server:bintrayUpload createDockerfile -PbintrayUser=${BINTRAY_USER} -PbintrayApiKey=${BINTRAY_API_KEY} -Pbranch=${TRAVIS_BRANCH} -PbuildNumber=${TRAVIS_BUILD_NUMBER}
+script: ./gradlew build bintrayUpload createDockerfile -PbintrayUser=${BINTRAY_USER} -PbintrayApiKey=${BINTRAY_API_KEY} -Pbranch=${TRAVIS_BRANCH} -PbuildNumber=${TRAVIS_BUILD_NUMBER}
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
