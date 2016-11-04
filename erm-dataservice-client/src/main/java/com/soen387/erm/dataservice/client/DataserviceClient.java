@@ -1,9 +1,9 @@
 package com.soen387.erm.dataservice.client;
 
+import com.soen387.erm.dataservice.client.api.DepartmentApi;
 import com.soen387.erm.dataservice.client.api.UserApi;
 import com.soen387.erm.dataservice.client.api.UserRoleApi;
-import org.springframework.hateoas.MediaTypes;
-import org.springframework.hateoas.client.Traverson;
+import com.soen387.erm.dataservice.client.jaxrs.RestClient;
 
 import java.net.URISyntaxException;
 
@@ -12,19 +12,22 @@ import java.net.URISyntaxException;
  */
 public class DataserviceClient {
 
-    private ClientConfig config;
-    private Traverson traverson;
+    private RestClient restClient;
 
     public DataserviceClient() throws URISyntaxException {
-        this.config = new ClientConfig();
-        this.traverson = new Traverson(this.config.getBaseUri(), MediaTypes.HAL_JSON);
+        ClientConfig config = new ClientConfig();
+        this.restClient = new RestClient(config.getBaseUriString());
     }
 
     public UserRoleApi getUserRoleApi() {
-        return new UserRoleApi(this.config);
+        return new UserRoleApi(this.restClient);
+    }
+
+    public DepartmentApi getDepartmentApi() {
+        return new DepartmentApi(this.restClient);
     }
 
     public UserApi getUserApi() {
-        return new UserApi(this.config);
+        return new UserApi(this.restClient);
     }
 }

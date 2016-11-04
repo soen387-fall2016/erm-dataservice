@@ -12,13 +12,11 @@ allprojects {
     buildscript {
         ext {
             applicationVersion = project.property('branch') + '-' + project.property('buildNumber')
-            junit_version = '4.8.1'
+            junit_version = '4.12'
 
         }
     }
 }
-
-
 
 subprojects {
     apply plugin: 'java'

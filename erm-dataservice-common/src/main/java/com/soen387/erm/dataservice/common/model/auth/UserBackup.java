@@ -2,20 +2,16 @@ package com.soen387.erm.dataservice.common.model.auth;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.soen387.erm.dataservice.common.model.BaseEntity;
+import org.springframework.hateoas.ResourceSupport;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 /**
  * Created by jeremybrown on 2016-10-17.
  */
-@XmlRootElement(name = "user")
-@JsonTypeName("user")
 @Entity
-public class User extends BaseEntity {
+public class UserBackup extends ResourceSupport {
 
     @Id
     @JsonProperty("username")
@@ -33,10 +29,10 @@ public class User extends BaseEntity {
     private String phone;
 
     @ManyToOne
-    private Department department;
+    private DepartmentBackup department;
 
     @ManyToMany
-    private List<UserRole> roles;
+    private List<UserRoleBackup> roles;
 
     public String getUsername() {
         return username;
@@ -62,11 +58,11 @@ public class User extends BaseEntity {
         return phone;
     }
 
-    public Department getDepartment() {
+    public DepartmentBackup getDepartment() {
         return department;
     }
 
-    public List<UserRole> getRoles() {
+    public List<UserRoleBackup> getRoles() {
         return roles;
     }
 

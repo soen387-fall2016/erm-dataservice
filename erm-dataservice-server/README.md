@@ -5,9 +5,9 @@
 ## How to run
 This is a gradle project which you can run using the included Gradle wrapper. It uses Spring Boot with a Tomcat server.
 
-Run on Linux / macOS: ```./gradlew bootRun```.
+Run on Linux / macOS: ```../gradlew bootRun```.
 
-Run on Windows: ```gradlew.bat bootRun```.
+Run on Windows: ```../gradlew.bat bootRun```.
 
 This will run the server on your machine where you can access it at ```http://localhost:8080```.
 
