@@ -2,6 +2,8 @@
 
 ##### Provides data storage & retrieval services to the SOEN 387 Fall 2016 Group Project
 
+[![Bintray](https://img.shields.io/bintray/v/soen387-fall2016/erm-maven/erm-dataservice-server.svg)](https://bintray.com/soen387-fall2016/erm-maven/erm-dataservice-server)
+
 ## How to run
 This is a gradle project which you can run using the included Gradle wrapper. It uses Spring Boot with a Tomcat server.
 
@@ -58,6 +60,38 @@ The API is explorable in a web browser at this URL: ```http://localhost:8080/swa
 
 ### Users
 Access the users list at ```http://<server-ip-and-port>/api/users```.
+
+Create a new user by POSTing to this URL with content like:
+```
+{
+    "username": "user1",
+    "firstName": "John",
+    "lastName": "Smith",
+    "type": "user"
+}
+```
+
+### User Roles
+Access the user roles list at ```http://<server-ip-and-port>/api/userRoles```.
+
+Create a new user role by POSTing to this URL with content like:
+```
+{
+    "roleName": "admin",
+    "type": "userRole"
+}
+```
+
+### Departments
+Access the departments list at ```http://<server-ip-and-port>/api/departments```.
+
+Create a new department by POSTing to this URL with content like:
+```
+{
+    "name": "department 1",
+    "type": "department
+}
+```
 
 ### Resources
 Access the resources list at ```http://<server-ip-and-port>/api/resources```.

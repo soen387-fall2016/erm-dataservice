@@ -44,7 +44,7 @@ public class UserRoleApiTest {
     @Test
     public void testGetUserRoleByLink() {
         String link = "http://localhost:8080/api/userRoles/1";
-        Resource<UserRole> role = client.getUserRoleApi().getByLink(link);
+        Resource<UserRole> role = client.getUserRoleApi().getResourceByLink(link);
 
 
         String roleHref = role.getId().getHref();

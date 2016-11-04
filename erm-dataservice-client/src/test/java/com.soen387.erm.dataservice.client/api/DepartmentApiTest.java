@@ -44,7 +44,7 @@ public class DepartmentApiTest {
     @Test
     public void testGetDepartmentByLink() {
         String link = "http://localhost:8080/api/departments/1";
-        Resource<Department> departmentResource = client.getDepartmentApi().getByLink(link);
+        Resource<Department> departmentResource = client.getDepartmentApi().getResourceByLink(link);
 
 
         String departmentHref = departmentResource.getId().getHref();

@@ -12,4 +12,12 @@ See the erm-dataservice-server module.
 ## Client
 See the erm-dataservice-client module.
 
+## How to build
+
+To build the entire project,
+
+On Linux / macOS: ```./gradlew build```.
+
+On Windows: ```./gradlew.bat build```.
+
 &copy; 2016

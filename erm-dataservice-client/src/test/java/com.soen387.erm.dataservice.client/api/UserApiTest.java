@@ -44,7 +44,7 @@ public class UserApiTest {
     @Test
     public void testGetUserByLink() {
         String link = "http://localhost:8080/api/users/uzah";
-        Resource<User> user = client.getUserApi().getByLink(link);
+        Resource<User> user = client.getUserApi().getResourceByLink(link);
 
         String userHref = user.getId().getHref();
         assert userHref.equals("http://localhost:8080/api/users/uzah");
