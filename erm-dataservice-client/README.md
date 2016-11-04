@@ -42,7 +42,8 @@ Collection<Resource<UserRole>> roles = client.getUserRoleApi().getCollectionByLi
 ```
 
 ## Including the client in your project
-** Replace 'master-18' with the latest or target version you want.
+** Replace 'master-31' with the latest or target version you want.
+** The latest passing version can be found at the top of this file in the Bintray badge.
 
 ### Maven
 In your pom.xml file, add the following:
@@ -61,7 +62,7 @@ In the ```<dependencies>``` tag:
 <dependency>
   <groupId>com.soen387.erm</groupId>
   <artifactId>erm-dataservice-client</artifactId>
-  <version>master-18</version>
+  <version>master-31</version>
   <type>pom</type>
 </dependency>
 ```
@@ -77,7 +78,7 @@ repositories {
 }    
 
 dependencies {
-    compile 'com.soen387.erm:erm-dataservice-client:master-18'
+    compile 'com.soen387.erm:erm-dataservice-client:master-31'
 }
 ```
 
