@@ -30,4 +30,28 @@ public class Department extends BaseEntity {
     public String getName() {
         return name;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        }
+        if (!(other instanceof Department)) {
+            return false;
+        }
+        Department otherDepartment = (Department) other;
+        // TODO find better way to do this
+        if ((otherDepartment.getName() == null || this.getName() == null)) {
+            return false;
+        }
+        else if (!(otherDepartment.getName().equals(this.getName()))) {
+            return false;
+        }
+        return true;
+    }
+
 }

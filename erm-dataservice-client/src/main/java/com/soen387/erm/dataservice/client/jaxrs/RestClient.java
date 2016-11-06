@@ -45,9 +45,9 @@ public class RestClient {
 
     private ObjectMapper getHallMapper() {
         ObjectMapper halObjectMapper = new ObjectMapper();
-        halObjectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        halObjectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         halObjectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-        halObjectMapper.configure(DeserializationFeature.FAIL_ON_INVALID_SUBTYPE, false);
+        halObjectMapper.configure(DeserializationFeature.FAIL_ON_INVALID_SUBTYPE, true);
         halObjectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 
         AnnotationIntrospector primary = new JaxbAnnotationIntrospector();

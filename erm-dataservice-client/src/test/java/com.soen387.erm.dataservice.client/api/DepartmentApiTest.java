@@ -2,52 +2,86 @@ package com.soen387.erm.dataservice.client.api;
 
 import com.soen387.erm.dataservice.client.DataserviceClient;
 import com.soen387.erm.dataservice.common.model.auth.Department;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
 import org.springframework.hateoas.Resource;
 
 import java.util.Collection;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 /**
  * Created by jeremybrown on 2016-11-03.
  */
+@Ignore
 public class DepartmentApiTest {
 
     private static DataserviceClient client;
 
-    @BeforeClass
-    public static void setUp() throws Exception {
+    private Resource<Department> dummyDepartment1;
+    private Resource<Department> dummyDepartment2;
+
+    @Before
+    public void setUp() throws Exception {
         client = new DataserviceClient();
+
+        Department dummyD1 = new Department();
+        dummyD1.setName("IT");
+
+        Department dummyD2 = new Department();
+        dummyD2.setName("Accounting");
+
+        dummyDepartment1 = client.getDepartmentApi().createResource(dummyD1);
+        dummyDepartment2 = client.getDepartmentApi().createResource(dummyD2);
     }
 
-    @Ignore
+    @After
+    public void tearDown() throws Exception {
+        client.getUserApi().deleteResourceByLink(dummyDepartment1.getId().getHref());
+        client.getUserApi().deleteResourceByLink(dummyDepartment2.getId().getHref());
+    }
+
     @Test
     public void testGetAllDepartments() {
-        Collection<Resource<Department>> departmentsCollection = client.getDepartmentApi().getAllDepartments();
+        Collection<Resource<Department>> departments = client.getDepartmentApi().getAllDepartments();
 
-        departmentsCollection.forEach(res -> System.out.println(res.getId().getHref()));
-        departmentsCollection.forEach(res -> System.out.println(res.getContent().getName()));
+        departments.forEach(r -> assertNotNull(r.getId()));
+        departments.forEach(r -> assertNotNull(r.getContent()));
+
+        assertTrue(departments.contains(dummyDepartment1));
+        assertTrue(departments.contains(dummyDepartment2));
     }
 
     @Ignore
     @Test
     public void testGetDepartmentById() {
+        // TODO fix this test
         Long departmentId = 1L;
         Resource<Department> departmentResource = client.getDepartmentApi().getDepartmentById(departmentId);
 
         String departmentHref = departmentResource.getId().getHref();
-        assert departmentHref.equals("http://localhost:8080/api/departments/1");
+        assertEquals("http://localhost:8080/api/departments/1", departmentHref);
+        assertNotNull(departmentResource.getContent());
     }
 
-    @Ignore
     @Test
     public void testGetDepartmentByLink() {
-        String link = "http://localhost:8080/api/departments/1";
-        Resource<Department> departmentResource = client.getDepartmentApi().getResourceByLink(link);
+        String link = dummyDepartment2.getId().getHref();
+        Resource<Department> department = client.getDepartmentApi().getResourceByLink(link);
 
+        assertEquals(link, department.getId().getHref());
+        assertEquals(dummyDepartment2, department);
+    }
 
-        String departmentHref = departmentResource.getId().getHref();
-        assert departmentHref.equals("http://localhost:8080/api/departments/1");
+    @Test
+    public void testCreateDepartment() {
+        Department d1 = new Department();
+        d1.setName("Department HEYYO!");
+
+        Resource<Department> createdDepartment = client.getDepartmentApi().createResource(d1);
+        assertNotNull(createdDepartment.getContent());
+
+        client.getUserApi().deleteResourceByLink(createdDepartment.getId().getHref());
     }
 }

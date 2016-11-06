@@ -1,21 +1,15 @@
 package com.soen387.erm.dataservice.server;
 
 import com.fasterxml.classmate.TypeResolver;
+import com.soen387.erm.dataservice.server.repository.ErmRepositoryConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.context.request.async.DeferredResult;
-import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.builders.ResponseMessageBuilder;
-import springfox.documentation.schema.ModelRef;
-import springfox.documentation.schema.WildcardType;
 import springfox.documentation.service.ApiKey;
 import springfox.documentation.service.AuthorizationScope;
 import springfox.documentation.service.SecurityReference;
@@ -28,15 +22,16 @@ import springfox.documentation.swagger.web.SecurityConfiguration;
 import springfox.documentation.swagger.web.UiConfiguration;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
-import static springfox.documentation.schema.AlternateTypeRules.newRule;
 
 @SpringBootApplication
 @EnableSwagger2
-@Import({springfox.documentation.spring.data.rest.configuration.SpringDataRestConfiguration.class})
+@Import({
+        springfox.documentation.spring.data.rest.configuration.SpringDataRestConfiguration.class,
+        ErmRepositoryConfig.class,
+})
 @EntityScan("com.soen387.erm.dataservice.common.model")
 public class DataserviceApplication {
 

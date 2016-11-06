@@ -11,7 +11,7 @@ public class ClientConfig {
     private URI baseUri;
 
     public ClientConfig() throws URISyntaxException {
-        this("http://localhost:8080/api");
+        this("http://localhost:8080/api/");
     }
 
     public ClientConfig(String baseUriString) throws URISyntaxException {

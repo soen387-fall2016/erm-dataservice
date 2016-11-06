@@ -1,6 +1,7 @@
 package com.soen387.erm.dataservice.common.model.auth;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.soen387.erm.dataservice.common.model.BaseEntity;
@@ -19,6 +20,7 @@ public class User extends BaseEntity {
 
     @Id
     @JsonProperty("username")
+    @JsonInclude
     private String username;
 
     private String firstName;
@@ -70,8 +72,43 @@ public class User extends BaseEntity {
         return roles;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     @Override
     public String toString() {
         return firstName + " " + lastName + "(" + username + ")";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        }
+        if (!(other instanceof User)) {
+            return false;
+        }
+        User otherUser = (User) other;
+        if (!(otherUser.getUsername().equals(this.getUsername()))) {
+            return false;
+        }
+        return true;
     }
 }

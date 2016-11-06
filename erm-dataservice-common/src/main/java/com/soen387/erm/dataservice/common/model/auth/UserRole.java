@@ -28,4 +28,24 @@ public class UserRole extends BaseEntity {
     public String getUserRoleHumanReadable() {
         return userRoleHumanReadable;
     }
+
+    public void setUserRoleHumanReadable(String userRoleHumanReadable) {
+        this.userRoleHumanReadable = userRoleHumanReadable;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        }
+        if (!(other instanceof UserRole)) {
+            return false;
+        }
+        UserRole otherUserRole = (UserRole) other;
+        // TODO find better way to do this
+        if (!(otherUserRole.getUserRoleHumanReadable().equals(this.getUserRoleHumanReadable()))) {
+            return false;
+        }
+        return true;
+    }
 }

@@ -1,11 +1,9 @@
 package com.soen387.erm.dataservice.client.api;
 
-import com.soen387.erm.dataservice.client.jaxrs.HalResource;
 import com.soen387.erm.dataservice.client.jaxrs.RestClient;
-import com.soen387.erm.dataservice.common.model.BaseEntity;
 import org.springframework.hateoas.Resource;
 
-import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.Response;
 import java.util.Collection;
 
 /**
@@ -19,22 +17,18 @@ public abstract class BaseApi<T> {
         this.restClient = restClient;
     }
 
-    public Resource<T> getResourceByLink(String link) {
+    public abstract Resource<T> createResource(T resource);
+
+    public abstract Resource<T> getResourceByLink(String link);
+
+    public Response deleteResourceByLink(String link) {
         return new RestClient(link)
                 .getRootTarget()
                 .request()
                 .accept("application/hal+json")
-                .get(new GenericType<Resource<T>>() {});
+                .delete();
     }
 
-    public Collection<Resource<T>> getCollectionByLink(String link) {
-        HalResource<BaseEntity, Resource<T>> collectionWrapper = new RestClient(link)
-                .getRootTarget()
-                .request()
-                .accept("application/hal+json")
-                .get(new GenericType<HalResource<BaseEntity, Resource<T>>>() {
-                });
+    public abstract Collection<Resource<T>> getCollectionByLink(String link);
 
-        return collectionWrapper.getContent();
-    }
 }

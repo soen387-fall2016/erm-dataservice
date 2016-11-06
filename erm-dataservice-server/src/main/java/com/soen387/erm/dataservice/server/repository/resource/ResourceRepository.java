@@ -11,11 +11,10 @@ import java.util.List;
 /**
  * Created by ebrjere on 9/28/16.
  */
-//@RepositoryRestResource(collectionResourceRel = "people", path = "people")
-@RepositoryRestResource()
+@RepositoryRestResource(collectionResourceRel = "resources", path = "resources")
 public interface ResourceRepository extends CrudRepository<AbstractResource, Long> {
 
-    @RestResource(exported = true, path="byName")
+    @RestResource(exported = true)
     List<AbstractResource> findByName(@Param("name") String name);
 
     // TODO

@@ -1,10 +1,31 @@
 package com.soen387.erm.dataservice.common.model.resource;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.soen387.erm.dataservice.common.model.auth.Department;
+import com.soen387.erm.dataservice.common.model.auth.User;
+import com.soen387.erm.dataservice.common.model.reservation.Reservation;
+
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Created by jeremybrown on 2016-09-26.
  */
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Computer.class, name = "computer"),
+        @JsonSubTypes.Type(value = Whiteboard.class, name = "whiteboard"),
+        @JsonSubTypes.Type(value = Projector.class, name = "projector"),
+        @JsonSubTypes.Type(value = Building.class, name = "building"),
+        @JsonSubTypes.Type(value = Room.class, name = "room")
+})
+@XmlRootElement(name = "resource")
+@JsonTypeName("resource")
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 public abstract class AbstractResource {

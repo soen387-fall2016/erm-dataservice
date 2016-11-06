@@ -6,7 +6,9 @@ import com.soen387.erm.dataservice.client.jaxrs.HalResource;
 import com.soen387.erm.dataservice.client.jaxrs.RestClient;
 import org.springframework.hateoas.Resource;
 
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.Response;
 import java.util.Collection;
 
 /**
@@ -14,13 +16,15 @@ import java.util.Collection;
  */
 public class DepartmentApi extends BaseApi<Department> {
 
+    protected String departmentsPathSuffix = "departments/";
+
     public DepartmentApi(RestClient restClient) {
         super(restClient);
     }
 
     public Collection<Resource<Department>> getAllDepartments() {
         HalResource<BaseEntity, Resource<Department>> departmentResources = restClient.getRootTarget()
-                .path("departments")
+                .path(departmentsPathSuffix)
                 .request()
                 .accept("application/hal+json")
                 .get(new GenericType<HalResource<BaseEntity, Resource<Department>>>() {});
@@ -31,9 +35,36 @@ public class DepartmentApi extends BaseApi<Department> {
     public Resource<Department> getDepartmentById(Long id) {
         return restClient
                 .getRootTarget()
-                .path("departments/" + id.toString())
+                .path(departmentsPathSuffix + id.toString())
                 .request()
                 .accept("application/hal+json")
                 .get(new GenericType<Resource<Department>>() {});
+    }
+
+    public Resource<Department> getResourceByLink(String link) {
+        return new RestClient(link)
+                .getRootTarget()
+                .request()
+                .accept("application/hal+json")
+                .get(new GenericType<Resource<Department>>() {});
+    }
+
+    public Collection<Resource<Department>> getCollectionByLink(String link) {
+        HalResource<BaseEntity, Resource<Department>> collectionWrapper = new RestClient(link)
+                .getRootTarget()
+                .request()
+                .accept("application/hal+json")
+                .get(new GenericType<HalResource<BaseEntity, Resource<Department>>>() {
+                });
+
+        return collectionWrapper.getContent();
+    }
+
+    public Resource<Department> createResource(Department department) {
+        return restClient
+                .getRootTarget()
+                .path(departmentsPathSuffix)
+                .request()
+                .post(Entity.json(department), new GenericType<Resource<Department>>() {});
     }
 }

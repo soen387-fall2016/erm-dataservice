@@ -1,15 +1,19 @@
 package com.soen387.erm.dataservice.common.model.reservation;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.soen387.erm.dataservice.common.model.auth.User;
 import com.soen387.erm.dataservice.common.model.resource.AbstractResource;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDateTime;
 import java.util.List;
 
 /**
  * Created by jeremybrown on 2016-10-17.
  */
+@XmlRootElement(name = "reservation")
+@JsonTypeName("reservation")
 @Entity
 public class Reservation {
 
