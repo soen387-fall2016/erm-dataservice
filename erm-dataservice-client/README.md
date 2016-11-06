@@ -12,6 +12,11 @@ The client provides a Java interface to fetch information from the server.
 ** For now only GET operations are supported, POST to come very soon.
 
 ```
+// Create a client at a specified address
+ClientConfig config = new ClientConfig("http://<my-server-and-port>/api-path");
+DataserviceClient client = new DataserviceClient(config);
+
+// Create a client at the default address (http://localhost:8080/api)
 DataserviceClient client = new DataserviceClient();
 
 // Get all users in the system
@@ -91,4 +96,8 @@ Run on Linux / macOS: ```../gradlew build```.
 
 Run on Windows: ```../gradlew.bat build```.
 
+
+## Acknowldgements
+
+The design of the client library is based on this example: [https://github.com/locisvv/spring-hateoas-client](https://github.com/locisvv/spring-hateoas-client).
 &copy; 2016

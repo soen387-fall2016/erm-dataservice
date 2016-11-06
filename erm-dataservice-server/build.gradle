@@ -83,7 +83,7 @@ task createDockerfile(type: Dockerfile) {
     exposePort 8080
     runCommand 'sh -c "touch /' + "${applicationName}" + '.jar"'
     runCommand 'sh -c "chmod 2777 /' + "${applicationName}" + '.jar"'
-    entryPoint 'java', '-Djava.security.egd=file:/dev/./urandom', '-jar', "${applicationName}" + '.jar', '--spring.profiles.active=prod'
+    entryPoint 'java', '-Djava.security.egd=file:/dev/./urandom', '-jar', "${applicationName}" + '.jar', '--spring.profiles.active=prod', '--spring.datasource.password=${MYSQL_ROOT_PASSWORD}'
 }
 
 test {

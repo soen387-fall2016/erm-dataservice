@@ -22,8 +22,8 @@ All entities are configured as Java classes, and Hibernate takes care of the dat
 I don't believe we even have to write a schema, but it will be possible to export it from the running database if need be.
 
 ### Database
-Currently the service is running with an embedded H2 database. This is only an in-memory database, nothing is persisted.
-So it is great for testing because it requires no external set-up, but we will need to move to MySql soon enough. This shouldn't be very hard though.
+The service uses an embedded H2 database when running the ```bootRun``` and ```test``` tasks. This is only an in-memory database, so nothing is persisted.
+When the project is built as a JAR, it can be run with the CLI flags ```--spring.profiles.active=prod --spring.datasource.password=<mysql-password>``` to run using an existing MySQL/MariaDB database.
 
 ### API
 Spring Boot is also set up to expose all of the entites as REST API endpoints automatically.
@@ -38,13 +38,17 @@ Build on Linux / macOS: ```./gradlew build```.
 
 Build on Windows: ```gradlew.bat build```.
 
-You can then run the JAR with ```java -jar build/libs/erm-dataservice-0.0.1-SNAPSHOT.jar```.
-** Replace ```0.0.1``` with the current version of the project, which is specified in ```gradle.properties```.
+Set the environment variable MYSQL_ROOT_PASSWORD to the password of your MySQL/MariaDB server.
+
+You can then run the JAR with ```java -jar build/libs/erm-dataservice-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod --spring.datasource.password=${MYSQL_ROOT_PASSWORD}```.
+** Replace ```0.0.1``` with version of the file JAR found in build/libs.
 
 ### Docker
 Docker builds are pushed to the Docker Hub with every commit passing tests.
 
-Run with Docker using: ```docker run --name erm-dataservice -p 8080:8080 soen387fall2016/erm-dataservice```
+Use docker-compose to run both a mariadb instance and the erm-dataservice-server.
+
+From the ```erm-dataservice``` root project folder, run with Docker Compose using: ```docker-compose up```.
 
 
 ## API Interface

@@ -4,9 +4,13 @@ services:
     image: 'soen387fall2016/erm-dataservice-server'
     ports:
       - "8080:8080"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     depends_on:
       - mariadb
   mariadb:
     image: 'soen387fall2016/erm-dataservice-db'
+    volumes:
+      - ../erm-dataservice-sql:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}

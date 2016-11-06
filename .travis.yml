@@ -27,5 +27,5 @@ after_success:
   - cd erm-dataservice-server
   - docker build -f build/docker/Dockerfile -t soen387fall2016/erm-dataservice-server:latest -t soen387fall2016/erm-dataservice-server:${TRAVIS_BRANCH}-${TRAVIS_BUILD_NUMBER} .
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - docker push soen387fall2016/erm-dataservice-server:latest
   - docker push soen387fall2016/erm-dataservice-server:${TRAVIS_BRANCH}-${TRAVIS_BUILD_NUMBER}
+  - docker push soen387fall2016/erm-dataservice-server:latest

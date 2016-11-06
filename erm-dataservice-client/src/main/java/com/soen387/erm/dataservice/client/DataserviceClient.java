@@ -15,7 +15,10 @@ public class DataserviceClient {
     private RestClient restClient;
 
     public DataserviceClient() throws URISyntaxException {
-        ClientConfig config = new ClientConfig();
+        this(new ClientConfig());
+    }
+
+    public DataserviceClient(ClientConfig config) {
         this.restClient = new RestClient(config.getBaseUriString());
     }
 
