@@ -3,7 +3,6 @@ package com.soen387.erm.dataservice.client.api;
 import com.soen387.erm.dataservice.client.DataserviceClient;
 import com.soen387.erm.dataservice.client.model.auth.UserRole;
 import org.junit.*;
-import org.springframework.hateoas.Resource;
 
 import java.util.Collection;
 
@@ -19,8 +18,8 @@ public class UserRoleApiTest {
 
     private static DataserviceClient client;
 
-    private Resource<UserRole> dummyUserRole1;
-    private Resource<UserRole> dummyUserRole2;
+    private UserRole dummyUserRole1;
+    private UserRole dummyUserRole2;
 
     @Before
     public void setUp() throws Exception {
@@ -44,10 +43,10 @@ public class UserRoleApiTest {
 
     @Test
     public void testGetAllUsersRoles() {
-        Collection<Resource<UserRole>> roles = client.getUserRoleApi().getAllUserRoles();
+        Collection<UserRole> roles = client.getUserRoleApi().getAllUserRoles();
 
         roles.forEach(r -> assertNotNull(r.getId()));
-        roles.forEach(r -> assertNotNull(r.getContent()));
+        roles.forEach(Assert::assertNotNull);
 
         assertTrue(roles.contains(dummyUserRole1));
         assertTrue(roles.contains(dummyUserRole2));
@@ -58,7 +57,7 @@ public class UserRoleApiTest {
     public void testGetUserRoleById() {
         // TODO fix this test
         Long userRoleId = 1L;
-        Resource<UserRole> role = client.getUserRoleApi().getUserRoleById(userRoleId);
+        UserRole role = client.getUserRoleApi().getUserRoleById(userRoleId);
 
         assertEquals("http://localhost:8080/api/userRoles/1", role.getId().getHref());
         assertEquals(dummyUserRole1, role);
@@ -67,7 +66,7 @@ public class UserRoleApiTest {
     @Test
     public void testGetUserRoleByLink() {
         String link = dummyUserRole2.getId().getHref();
-        Resource<UserRole> role = client.getUserRoleApi().getResourceByLink(link);
+        UserRole role = client.getUserRoleApi().getResourceByLink(link);
 
         assertEquals(link, role.getId().getHref());
         assertEquals(dummyUserRole2, role);
@@ -78,8 +77,8 @@ public class UserRoleApiTest {
         UserRole role = new UserRole();
         role.setUserRoleHumanReadable("ROLE #2!");
 
-        Resource<UserRole> createdRole = client.getUserRoleApi().createResource(role);
-        assertNotNull(createdRole.getContent());
+        UserRole createdRole = client.getUserRoleApi().createResource(role);
+        assertNotNull(createdRole);
 
         client.getUserRoleApi().deleteResourceByLink(createdRole.getId().getHref());
     }

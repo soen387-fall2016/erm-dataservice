@@ -1,5 +1,7 @@
 package com.soen387.erm.dataservice.client.model;
 
+import org.springframework.hateoas.ResourceSupport;
+
 /**
  * @author Vasyl Spachynskyi
  * @version $Id:
@@ -7,6 +9,6 @@ package com.soen387.erm.dataservice.client.model;
  */
 
 
-public abstract class BaseEntity {
+public abstract class BaseEntity extends ResourceSupport {
 
 }

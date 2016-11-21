@@ -4,7 +4,6 @@ import com.soen387.erm.dataservice.client.jaxrs.HalResource;
 import com.soen387.erm.dataservice.client.jaxrs.RestClient;
 import com.soen387.erm.dataservice.client.model.BaseEntity;
 import com.soen387.erm.dataservice.client.model.auth.User;
-import org.springframework.hateoas.Resource;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
@@ -21,51 +20,51 @@ public class UserApi extends BaseApi<User> {
         super(restClient);
     }
 
-    public Collection<Resource<User>> getAllUsers() {
-        HalResource<BaseEntity, Resource<User>> userResources = restClient.getRootTarget()
+    public Collection<User> getAllUsers() {
+        HalResource<BaseEntity, User> userResources = restClient.getRootTarget()
                 .path(usersPathSuffix)
                 .request()
                 .accept("application/hal+json")
-                .get(new GenericType<HalResource<BaseEntity, Resource<User>>>() {});
+                .get(new GenericType<HalResource<BaseEntity, User>>() {});
 
         return userResources.getContent();
     }
 
-    public Resource<User> getUserByUsername(String username) {
+    public User getUserByUsername(String username) {
         return restClient
                 .getRootTarget()
                 .path(usersPathSuffix + username)
                 .queryParam("embedded", true)
                 .request()
                 .accept("application/hal+json")
-                .get(new GenericType<Resource<User>>() {});
+                .get(new GenericType<User>() {});
     }
 
-    public Resource<User> getResourceByLink(String link) {
+    public User getResourceByLink(String link) {
         return new RestClient(link)
                 .getRootTarget()
                 .request()
                 .accept("application/hal+json")
-                .get(new GenericType<Resource<User>>() {});
+                .get(new GenericType<User>() {});
     }
 
-    public Collection<Resource<User>> getCollectionByLink(String link) {
-        HalResource<BaseEntity, Resource<User>> collectionWrapper = new RestClient(link)
+    public Collection<User> getCollectionByLink(String link) {
+        HalResource<BaseEntity, User> collectionWrapper = new RestClient(link)
                 .getRootTarget()
                 .request()
                 .accept("application/hal+json")
-                .get(new GenericType<HalResource<BaseEntity, Resource<User>>>() {
+                .get(new GenericType<HalResource<BaseEntity, User>>() {
                 });
 
         return collectionWrapper.getContent();
     }
 
-    public Resource<User> createResource(User user) {
+    public User createResource(User user) {
         return restClient
                 .getRootTarget()
                 .path(usersPathSuffix)
                 .request()
-                .post(Entity.json(user), new GenericType<Resource<User>>() {});
+                .post(Entity.json(user), new GenericType<User>() {});
     }
 
 //    public Collection<User> getUsersByFirstAndLastName(String firstName, String lastName) {

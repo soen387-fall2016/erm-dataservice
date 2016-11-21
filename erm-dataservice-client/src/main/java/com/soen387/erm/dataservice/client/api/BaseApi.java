@@ -17,9 +17,9 @@ public abstract class BaseApi<T> {
         this.restClient = restClient;
     }
 
-    public abstract Resource<T> createResource(T resource);
+    public abstract T createResource(T resource);
 
-    public abstract Resource<T> getResourceByLink(String link);
+    public abstract T getResourceByLink(String link);
 
     public Response deleteResourceByLink(String link) {
         return new RestClient(link)
@@ -29,6 +29,6 @@ public abstract class BaseApi<T> {
                 .delete();
     }
 
-    public abstract Collection<Resource<T>> getCollectionByLink(String link);
+    public abstract Collection<T> getCollectionByLink(String link);
 
 }

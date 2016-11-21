@@ -21,50 +21,50 @@ public class UserRoleApi extends BaseApi<UserRole> {
         super(restClient);
     }
 
-    public Collection<Resource<UserRole>> getAllUserRoles() {
-        HalResource<BaseEntity, Resource<UserRole>> userRoleResources = restClient.getRootTarget()
+    public Collection<UserRole> getAllUserRoles() {
+        HalResource<BaseEntity, UserRole> userRoleResources = restClient.getRootTarget()
                 .path(userRolesPathSuffix)
                 .request()
                 .accept("application/hal+json")
-                .get(new GenericType<HalResource<BaseEntity, Resource<UserRole>>>() {});
+                .get(new GenericType<HalResource<BaseEntity, UserRole>>() {});
 
         return userRoleResources.getContent();
     }
 
-    public Resource<UserRole> getUserRoleById(Long id) {
+    public UserRole getUserRoleById(Long id) {
         return restClient
                 .getRootTarget()
                 .path(userRolesPathSuffix + id.toString())
                 .request()
                 .accept("application/hal+json")
-                .get(new GenericType<Resource<UserRole>>() {});
+                .get(new GenericType<UserRole>() {});
     }
 
-    public Resource<UserRole> getResourceByLink(String link) {
+    public UserRole getResourceByLink(String link) {
         return new RestClient(link)
                 .getRootTarget()
                 .request()
                 .accept("application/hal+json")
-                .get(new GenericType<Resource<UserRole>>() {});
+                .get(new GenericType<UserRole>() {});
     }
 
-    public Collection<Resource<UserRole>> getCollectionByLink(String link) {
-        HalResource<BaseEntity, Resource<UserRole>> collectionWrapper = new RestClient(link)
+    public Collection<UserRole> getCollectionByLink(String link) {
+        HalResource<BaseEntity, UserRole> collectionWrapper = new RestClient(link)
                 .getRootTarget()
                 .request()
                 .accept("application/hal+json")
-                .get(new GenericType<HalResource<BaseEntity, Resource<UserRole>>>() {
+                .get(new GenericType<HalResource<BaseEntity, UserRole>>() {
                 });
 
         return collectionWrapper.getContent();
     }
 
-    public Resource<UserRole> createResource(UserRole role) {
+    public UserRole createResource(UserRole role) {
         return restClient
                 .getRootTarget()
                 .path(userRolesPathSuffix)
                 .request()
-                .post(Entity.json(role), new GenericType<Resource<UserRole>>() {});
+                .post(Entity.json(role), new GenericType<UserRole>() {});
     }
 
 }

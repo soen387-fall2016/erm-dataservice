@@ -21,49 +21,49 @@ public class DepartmentApi extends BaseApi<Department> {
         super(restClient);
     }
 
-    public Collection<Resource<Department>> getAllDepartments() {
-        HalResource<BaseEntity, Resource<Department>> departmentResources = restClient.getRootTarget()
+    public Collection<Department> getAllDepartments() {
+        HalResource<BaseEntity, Department> departmentResources = restClient.getRootTarget()
                 .path(departmentsPathSuffix)
                 .request()
                 .accept("application/hal+json")
-                .get(new GenericType<HalResource<BaseEntity, Resource<Department>>>() {});
+                .get(new GenericType<HalResource<BaseEntity, Department>>() {});
 
         return departmentResources.getContent();
     }
 
-    public Resource<Department> getDepartmentById(Long id) {
+    public Department getDepartmentById(Long id) {
         return restClient
                 .getRootTarget()
                 .path(departmentsPathSuffix + id.toString())
                 .request()
                 .accept("application/hal+json")
-                .get(new GenericType<Resource<Department>>() {});
+                .get(new GenericType<Department>() {});
     }
 
-    public Resource<Department> getResourceByLink(String link) {
+    public Department getResourceByLink(String link) {
         return new RestClient(link)
                 .getRootTarget()
                 .request()
                 .accept("application/hal+json")
-                .get(new GenericType<Resource<Department>>() {});
+                .get(new GenericType<Department>() {});
     }
 
-    public Collection<Resource<Department>> getCollectionByLink(String link) {
-        HalResource<BaseEntity, Resource<Department>> collectionWrapper = new RestClient(link)
+    public Collection<Department> getCollectionByLink(String link) {
+        HalResource<BaseEntity, Department> collectionWrapper = new RestClient(link)
                 .getRootTarget()
                 .request()
                 .accept("application/hal+json")
-                .get(new GenericType<HalResource<BaseEntity, Resource<Department>>>() {
+                .get(new GenericType<HalResource<BaseEntity, Department>>() {
                 });
 
         return collectionWrapper.getContent();
     }
 
-    public Resource<Department> createResource(Department department) {
+    public Department createResource(Department department) {
         return restClient
                 .getRootTarget()
                 .path(departmentsPathSuffix)
                 .request()
-                .post(Entity.json(department), new GenericType<Resource<Department>>() {});
+                .post(Entity.json(department), new GenericType<Department>() {});
     }
 }

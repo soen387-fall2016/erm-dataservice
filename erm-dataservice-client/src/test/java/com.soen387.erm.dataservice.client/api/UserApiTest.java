@@ -5,7 +5,6 @@ import com.soen387.erm.dataservice.client.model.auth.Department;
 import com.soen387.erm.dataservice.client.model.auth.User;
 import com.soen387.erm.dataservice.client.model.auth.UserRole;
 import org.junit.*;
-import org.springframework.hateoas.Resource;
 
 import java.util.Collection;
 
@@ -16,13 +15,13 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by jeremybrown on 2016-11-01.
  */
-//@Ignore
+@Ignore
 public class UserApiTest {
 
     private static DataserviceClient client;
 
-    private Resource<User> dummyUser1;
-    private Resource<User> dummyUser2;
+    private User dummyUser1;
+    private User dummyUser2;
 
     @Before
     public void setUp() throws Exception {
@@ -50,10 +49,10 @@ public class UserApiTest {
 
     @Test
     public void testGetAllUsers() {
-        Collection<Resource<User>> users = client.getUserApi().getAllUsers();
+        Collection<User> users = client.getUserApi().getAllUsers();
 
         users.forEach(r -> assertNotNull(r.getId()));
-        users.forEach(r -> assertNotNull(r.getContent()));
+        users.forEach(Assert::assertNotNull);
 
         assertTrue(users.contains(dummyUser1));
         assertTrue(users.contains(dummyUser2));
@@ -62,7 +61,7 @@ public class UserApiTest {
     @Test
     public void testGetUserByUsername() {
         String username = "uzah";
-        Resource<User> user = client.getUserApi().getUserByUsername(username);
+        User user = client.getUserApi().getUserByUsername(username);
 
         assertEquals("http://localhost:8080/api/users/uzah", user.getId().getHref());
         assertEquals(dummyUser1, user);
@@ -71,7 +70,7 @@ public class UserApiTest {
     @Test
     public void testGetUserByLink() {
         String link = dummyUser2.getId().getHref();
-        Resource<User> user = client.getUserApi().getResourceByLink(link);
+        User user = client.getUserApi().getResourceByLink(link);
 
         assertEquals(link, user.getId().getHref());
         assertEquals(dummyUser2, user);
@@ -84,8 +83,8 @@ public class UserApiTest {
         u1.setFirstName("John");
         u1.setLastName("Smith");
 
-        Resource<User> createdUser = client.getUserApi().createResource(u1);
-        assertNotNull(createdUser.getContent());
+        User createdUser = client.getUserApi().createResource(u1);
+        assertNotNull(createdUser);
 
         client.getUserApi().deleteResourceByLink(createdUser.getId().getHref());
     }
@@ -95,24 +94,31 @@ public class UserApiTest {
         Department d1 = new Department();
         d1.setName("Department HEYYO!");
 
-        Resource<Department> createdDepartment = client.getDepartmentApi().createResource(d1);
+        Department createdDepartment = client.getDepartmentApi().createResource(d1);
         assertNotNull(createdDepartment);
 
         UserRole role = new UserRole();
         role.setUserRoleHumanReadable("ROLE #2!");
 
-        Resource<UserRole> createdRole = client.getUserRoleApi().createResource(role);
-        assertNotNull(createdRole.getContent());
+        UserRole createdRole = client.getUserRoleApi().createResource(role);
+        assertNotNull(createdRole);
 
         User u1 = new User();
         u1.setUsername("jonny");
         u1.setFirstName("John");
         u1.setLastName("Smith");
-        u1.setDepartmentId(createdDepartment.getLink("self").getHref());
-        u1.addRole(createdRole.getLink("self").getHref());
+        u1.setDepartment(createdDepartment.getId().getHref());
+        u1.addRole(createdRole.getId().getHref());
 
-        Resource<User> createdUser = client.getUserApi().createResource(u1);
+        User createdUser = client.getUserApi().createResource(u1);
         assertNotNull(createdUser);
+
+        String departmentLink = createdUser.getLink("department").getHref();
+        String rolesLink = createdUser.getLink("roles").getHref();
+        Department departmentFromUser = client.getDepartmentApi().getResourceByLink(departmentLink);
+        assertNotNull(departmentFromUser);
+        Collection<UserRole> rolesFromUser = client.getUserRoleApi().getCollectionByLink(rolesLink);
+        assertNotNull(rolesFromUser);
 
         client.getUserApi().deleteResourceByLink(createdUser.getId().getHref());
         client.getDepartmentApi().deleteResourceByLink(createdDepartment.getId().getHref());

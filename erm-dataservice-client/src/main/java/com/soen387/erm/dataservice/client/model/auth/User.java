@@ -84,7 +84,7 @@ public class User extends BaseEntity {
         this.phone = phone;
     }
 
-    public void setDepartmentId(String departmentId) {
+    public void setDepartment(String departmentId) {
         this.department = departmentId;
     }
 
