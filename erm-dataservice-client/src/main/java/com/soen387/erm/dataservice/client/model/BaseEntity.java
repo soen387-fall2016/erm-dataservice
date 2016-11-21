@@ -1,4 +1,4 @@
-package com.soen387.erm.dataservice.common.model;
+package com.soen387.erm.dataservice.client.model;
 
 /**
  * @author Vasyl Spachynskyi

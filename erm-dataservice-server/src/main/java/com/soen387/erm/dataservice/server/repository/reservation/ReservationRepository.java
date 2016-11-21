@@ -1,6 +1,6 @@
 package com.soen387.erm.dataservice.server.repository.reservation;
 
-import com.soen387.erm.dataservice.common.model.reservation.Reservation;
+import com.soen387.erm.dataservice.server.model.reservation.Reservation;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 

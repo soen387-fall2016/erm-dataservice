@@ -32,7 +32,7 @@ import static com.google.common.collect.Lists.newArrayList;
         springfox.documentation.spring.data.rest.configuration.SpringDataRestConfiguration.class,
         ErmRepositoryConfig.class,
 })
-@EntityScan("com.soen387.erm.dataservice.common.model")
+@EntityScan("com.soen387.erm.dataservice.server.model")
 public class DataserviceApplication {
 
 	public static void main(String[] args) {

@@ -1,14 +1,11 @@
 package com.soen387.erm.dataservice.client.api;
 
 import com.soen387.erm.dataservice.client.DataserviceClient;
-import com.soen387.erm.dataservice.common.model.auth.Department;
-import com.soen387.erm.dataservice.common.model.auth.UserRole;
+import com.soen387.erm.dataservice.client.model.auth.UserRole;
 import org.junit.*;
 import org.springframework.hateoas.Resource;
 
-import javax.ws.rs.core.Response;
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

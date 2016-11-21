@@ -1,13 +1,9 @@
-package com.soen387.erm.dataservice.common.model.auth;
+package com.soen387.erm.dataservice.client.model.auth;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.soen387.erm.dataservice.common.model.BaseEntity;
+import com.soen387.erm.dataservice.client.model.BaseEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -15,12 +11,9 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement(name = "userRole")
 @JsonTypeName("userRole")
-@Entity
 public class UserRole extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long roleId;
 
     @JsonProperty(value="roleName")
     private String userRoleHumanReadable;
@@ -33,6 +26,10 @@ public class UserRole extends BaseEntity {
         this.userRoleHumanReadable = userRoleHumanReadable;
     }
 
+    public Long getRoleId() {
+        return roleId;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == null) {
@@ -43,9 +40,6 @@ public class UserRole extends BaseEntity {
         }
         UserRole otherUserRole = (UserRole) other;
         // TODO find better way to do this
-        if (!(otherUserRole.getUserRoleHumanReadable().equals(this.getUserRoleHumanReadable()))) {
-            return false;
-        }
-        return true;
+        return otherUserRole.getUserRoleHumanReadable().equals(this.getUserRoleHumanReadable());
     }
 }

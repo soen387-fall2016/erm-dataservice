@@ -2,13 +2,12 @@ package com.soen387.erm.dataservice.client.api;
 
 import com.soen387.erm.dataservice.client.jaxrs.HalResource;
 import com.soen387.erm.dataservice.client.jaxrs.RestClient;
-import com.soen387.erm.dataservice.common.model.BaseEntity;
-import com.soen387.erm.dataservice.common.model.auth.User;
+import com.soen387.erm.dataservice.client.model.BaseEntity;
+import com.soen387.erm.dataservice.client.model.auth.User;
 import org.springframework.hateoas.Resource;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.Response;
 import java.util.*;
 
 /**

@@ -1,11 +1,8 @@
-package com.soen387.erm.dataservice.common.model.resource;
+package com.soen387.erm.dataservice.server.model.resource;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.soen387.erm.dataservice.common.model.auth.Department;
-import com.soen387.erm.dataservice.common.model.auth.User;
-import com.soen387.erm.dataservice.common.model.reservation.Reservation;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;

@@ -1,14 +1,13 @@
 package com.soen387.erm.dataservice.client.api;
 
 import com.soen387.erm.dataservice.client.DataserviceClient;
-import com.soen387.erm.dataservice.common.model.auth.Department;
-import com.soen387.erm.dataservice.common.model.auth.User;
+import com.soen387.erm.dataservice.client.model.auth.Department;
+import com.soen387.erm.dataservice.client.model.auth.User;
+import com.soen387.erm.dataservice.client.model.auth.UserRole;
 import org.junit.*;
 import org.springframework.hateoas.Resource;
 
-import javax.ws.rs.core.Response;
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -17,7 +16,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by jeremybrown on 2016-11-01.
  */
-@Ignore
+//@Ignore
 public class UserApiTest {
 
     private static DataserviceClient client;
@@ -49,7 +48,6 @@ public class UserApiTest {
         client.getUserApi().deleteResourceByLink(dummyUser2.getId().getHref());
     }
 
-    @Ignore
     @Test
     public void testGetAllUsers() {
         Collection<Resource<User>> users = client.getUserApi().getAllUsers();
@@ -61,7 +59,6 @@ public class UserApiTest {
         assertTrue(users.contains(dummyUser2));
     }
 
-    @Ignore
     @Test
     public void testGetUserByUsername() {
         String username = "uzah";
@@ -71,7 +68,6 @@ public class UserApiTest {
         assertEquals(dummyUser1, user);
     }
 
-    @Ignore
     @Test
     public void testGetUserByLink() {
         String link = dummyUser2.getId().getHref();
@@ -81,7 +77,6 @@ public class UserApiTest {
         assertEquals(dummyUser2, user);
     }
 
-        @Ignore
     @Test
     public void testCreateUser() {
         User u1 = new User();
@@ -94,4 +89,34 @@ public class UserApiTest {
 
         client.getUserApi().deleteResourceByLink(createdUser.getId().getHref());
     }
+
+    @Test
+    public void testCreateDepartmentAndUserAndRole() {
+        Department d1 = new Department();
+        d1.setName("Department HEYYO!");
+
+        Resource<Department> createdDepartment = client.getDepartmentApi().createResource(d1);
+        assertNotNull(createdDepartment);
+
+        UserRole role = new UserRole();
+        role.setUserRoleHumanReadable("ROLE #2!");
+
+        Resource<UserRole> createdRole = client.getUserRoleApi().createResource(role);
+        assertNotNull(createdRole.getContent());
+
+        User u1 = new User();
+        u1.setUsername("jonny");
+        u1.setFirstName("John");
+        u1.setLastName("Smith");
+        u1.setDepartmentId(createdDepartment.getLink("self").getHref());
+        u1.addRole(createdRole.getLink("self").getHref());
+
+        Resource<User> createdUser = client.getUserApi().createResource(u1);
+        assertNotNull(createdUser);
+
+        client.getUserApi().deleteResourceByLink(createdUser.getId().getHref());
+        client.getDepartmentApi().deleteResourceByLink(createdDepartment.getId().getHref());
+        client.getUserRoleApi().deleteResourceByLink(createdRole.getId().getHref());
+    }
+
 }

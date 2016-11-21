@@ -1,10 +1,9 @@
-package com.soen387.erm.dataservice.common.model.auth;
+package com.soen387.erm.dataservice.server.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.soen387.erm.dataservice.common.model.BaseEntity;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -90,6 +89,10 @@ public class User extends BaseEntity {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.soen387.erm.dataservice.common.model.resource;
+package com.soen387.erm.dataservice.server.model.resource;
 
 import javax.persistence.Embeddable;
 

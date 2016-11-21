@@ -35,14 +35,6 @@ subprojects {
             publish = true
         }
     }
-
-    // Add dependency on common project to all other projects
-    if (it.name != 'erm-dataservice-common') {
-        dependencies {
-            compile project(':erm-dataservice-common')
-            testCompile "junit:junit:$junit_version"
-        }
-    }
 }
 
 buildscript {
