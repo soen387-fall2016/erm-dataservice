@@ -20,29 +20,44 @@ DataserviceClient client = new DataserviceClient(config);
 DataserviceClient client = new DataserviceClient();
 
 // Get all users in the system
-Collection<Resource<User>> allUsers = client.getUserApi().getAllUsers();
+Collection<User> allUsers = client.getUserApi().getAllUsers();
 
 // Get a user by username
 String username = "uzah";
-Resource<User> user = client.getUserApi().getUserByUsername(username);
+User user = client.getUserApi().getUserByUsername(username);
 
 // Get a user by its link
 String link = "http://localhost:8080/api/users/uzah";
-Resource<User> user = client.getUserApi().getByLink(link);
+User user = client.getUserApi().getByLink(link);
 
 // Access user properties
 user.getContent().getFirstName();
 user.getContent().getLastName();
 
 // Access link to department
-String linkToUserDepartment = user.getLinks("department").getHref();
+String linkToUserDepartment = user.getLink("department").getHref();
 // Get department instance
-Resource<Department> dept = client.getDepartmentApi().getResourceByLink(linkToUserDepartment);
+Department dept = client.getDepartmentApi().getResourceByLink(linkToUserDepartment);
 
 // Access links to user roles
-String linkToUserRoles = user.getLinks("roles").getHref();
+String linkToUserRoles = user.getLink("roles").getHref();
 // Get collection of user role instances
-Collection<Resource<UserRole>> roles = client.getUserRoleApi().getCollectionByLink(linkUserRoles);
+Collection<UserRole> roles = client.getUserRoleApi().getCollectionByLink(linkUserRoles);
+
+// Create a department
+Department d1 = new Department();
+d1.setName("Department HEYYO!");
+Department createdDepartment = client.getDepartmentApi().createResource(d1);
+
+// Create a user role
+UserRole role = new UserRole();
+role.setUserRoleHumanReadable("ROLE #2!");
+UserRole createdRole = client.getUserRoleApi().createResource(role);
+
+// Assign a department & role to a user
+user.setDepartment(createdDepartment.getId().getHref());
+user.addRole(createdRole.getId().getHref());
+client.getUserApi().createResource(user); // to update existing user (I think)
 
 ```
 
