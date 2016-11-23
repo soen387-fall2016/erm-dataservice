@@ -1,4 +1,4 @@
-package com.soen387.erm.dataservice.client.model.auth;
+package com.soen387.erm.dataservice.client.model.reservation;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.soen387.erm.dataservice.client.model.BaseEntity;
@@ -6,7 +6,6 @@ import com.soen387.erm.dataservice.server.model.User;
 import com.soen387.erm.dataservice.server.model.resource.AbstractResource;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -75,14 +74,13 @@ public class Reservation extends BaseEntity {
         }
         Reservation otherReservation = (Reservation) other;
         // TODO find better way to do this
-        if ((otherReservation.getName() == null || this.getName() == null)) {
+        if ((otherReservation.getReservationId() == null || this.getReservationId() == null)) {
             return false;
         }
-        else if (!(otherReservation.getName().equals(this.getName()))) {
+        else if (!(otherReservation.getReservationId().equals(this.getReservationId()))) {
             return false;
         }
         return true;
     }
-
 
 }
