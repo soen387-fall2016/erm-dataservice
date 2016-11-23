@@ -2,8 +2,8 @@ package com.soen387.erm.dataservice.client.model.reservation;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.soen387.erm.dataservice.client.model.BaseEntity;
-import com.soen387.erm.dataservice.server.model.User;
-import com.soen387.erm.dataservice.server.model.resource.AbstractResource;
+import com.soen387.erm.dataservice.client.model.auth.User;
+import com.soen387.erm.dataservice.client.model.resource.AbstractResource;
 
 import java.time.LocalDateTime;
 import java.util.List;
