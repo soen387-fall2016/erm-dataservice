@@ -1,6 +1,6 @@
 package com.soen387.erm.dataservice.server.repository.auth;
 
-import com.soen387.erm.dataservice.server.model.Department;
+import com.soen387.erm.dataservice.server.model.auth.Department;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 

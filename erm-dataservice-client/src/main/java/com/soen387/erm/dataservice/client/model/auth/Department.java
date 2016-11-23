@@ -37,14 +37,7 @@ public class Department extends BaseEntity {
             return false;
         }
         Department otherDepartment = (Department) other;
-        // TODO find better way to do this
-        if ((otherDepartment.getName() == null || this.getName() == null)) {
-            return false;
-        }
-        else if (!(otherDepartment.getName().equals(this.getName()))) {
-            return false;
-        }
-        return true;
+        return otherDepartment.getDepartmentId().equals(this.getDepartmentId());
     }
 
 }

@@ -1,8 +1,9 @@
-package com.soen387.erm.dataservice.server.model;
+package com.soen387.erm.dataservice.server.model.auth;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.soen387.erm.dataservice.server.model.BaseEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

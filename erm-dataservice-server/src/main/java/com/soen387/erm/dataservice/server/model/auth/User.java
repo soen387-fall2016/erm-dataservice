@@ -1,9 +1,9 @@
-package com.soen387.erm.dataservice.server.model;
+package com.soen387.erm.dataservice.server.model.auth;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.soen387.erm.dataservice.server.model.BaseEntity;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -26,7 +26,6 @@ public class User extends BaseEntity {
 
     private String lastName;
 
-    @JsonIgnore
     private String passwordEncrypted;
 
     private String email;
@@ -83,6 +82,10 @@ public class User extends BaseEntity {
         this.lastName = lastName;
     }
 
+    public void setPasswordEncrypted(String passwordEncrypted) {
+        this.passwordEncrypted = passwordEncrypted;
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -109,9 +112,6 @@ public class User extends BaseEntity {
             return false;
         }
         User otherUser = (User) other;
-        if (!(otherUser.getUsername().equals(this.getUsername()))) {
-            return false;
-        }
-        return true;
+        return otherUser.getUsername().equals(this.getUsername());
     }
 }

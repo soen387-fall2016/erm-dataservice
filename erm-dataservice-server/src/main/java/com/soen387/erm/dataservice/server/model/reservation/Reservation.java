@@ -1,7 +1,7 @@
 package com.soen387.erm.dataservice.server.model.reservation;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.soen387.erm.dataservice.server.model.User;
+import com.soen387.erm.dataservice.server.model.auth.User;
 import com.soen387.erm.dataservice.server.model.resource.AbstractResource;
 
 import javax.persistence.*;
