@@ -1,5 +1,8 @@
 package com.soen387.erm.dataservice.client.model.resource;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.soen387.erm.dataservice.client.model.BaseEntity;
 
 /**
@@ -38,7 +41,7 @@ public class AbstractResource extends BaseEntity {
     }
 
     public Long getResourceId() {
-        return resourceId;
+        return resourceID;
     }
 
     @Override
