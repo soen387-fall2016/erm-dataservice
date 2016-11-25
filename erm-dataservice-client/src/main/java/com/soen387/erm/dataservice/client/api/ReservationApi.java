@@ -66,7 +66,7 @@ public class ReservationApi extends BaseApi<Reservation> {
         return collectionWrapper.getContent();
     }
 
-    public Reservation ReservationById(Long id) {
+    public Reservation getReservationById(Long id) {
         return restClient
                 .getRootTarget()
                 .path(getPathSuffix() + id)

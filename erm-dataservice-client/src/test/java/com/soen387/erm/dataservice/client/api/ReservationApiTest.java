@@ -1,5 +1,6 @@
 package com.soen387.erm.dataservice.client.api;
 
+import com.soen387.erm.dataservice.client.ClientConfig;
 import com.soen387.erm.dataservice.client.DataserviceClient;
 import com.soen387.erm.dataservice.client.model.auth.User;
 import com.soen387.erm.dataservice.client.model.reservation.Reservation;
@@ -24,7 +25,8 @@ public class ReservationApiTest {
 
     @Before
     public void setUp() throws Exception {
-        client = new DataserviceClient();
+        ClientConfig c = new ClientConfig("http://54.218.174.224:8080/api/");
+        client = new DataserviceClient(c);
 
         User dummyU1 = new User();
         dummyU1.setUsername("uzah");
@@ -45,6 +47,7 @@ public class ReservationApiTest {
     @Test
     public void testCreateReservation() throws Exception {
         Reservation r1 = new Reservation();
+
         r1.setUser(dummyUser1.getId().getHref());
         LocalDateTime now = LocalDateTime.now();
         r1.setStartDateTime(now);
