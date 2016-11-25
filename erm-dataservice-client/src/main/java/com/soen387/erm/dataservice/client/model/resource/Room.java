@@ -1,9 +1,6 @@
 package com.soen387.erm.dataservice.client.model.resource;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.soen387.erm.dataservice.client.model.BaseEntity;
-import com.soen387.erm.dataservice.client.model.resource.Building;
-
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -11,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement(name = "room")
 @JsonTypeName("room")
-public class Room extends BaseEntity {
+public class Room extends AbstractResource {
 	 private String roomNumber;
 
 	    private Building building;

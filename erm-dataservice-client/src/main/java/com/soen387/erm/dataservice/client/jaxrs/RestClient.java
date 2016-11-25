@@ -58,7 +58,7 @@ public class RestClient {
         halObjectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         halObjectMapper
                 .setHandlerInstantiator(new Jackson2HalModule.
-                        HalHandlerInstantiator(new DefaultRelProvider(), null, false));
+                        HalHandlerInstantiator(new DefaultRelProvider(), null, null));
 
         Jackson2HalModule jackson2HalModule = new Jackson2HalModule();
 

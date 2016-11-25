@@ -1,7 +1,6 @@
 package com.soen387.erm.dataservice.client.api;
 
 import com.soen387.erm.dataservice.client.jaxrs.RestClient;
-import org.springframework.hateoas.Resource;
 
 import javax.ws.rs.core.Response;
 import java.util.Collection;
@@ -17,9 +16,15 @@ public abstract class BaseApi<T> {
         this.restClient = restClient;
     }
 
-    public abstract T createResource(T resource);
+    public abstract T create(T resource);
 
-    public abstract T getResourceByLink(String link);
+    public abstract String getPathSuffix();
+
+    public abstract Collection<T> getAll();
+
+    public abstract T getByLink(String link);
+
+    public abstract Collection<T> getCollectionByLink(String link);
 
     public Response deleteResourceByLink(String link) {
         return new RestClient(link)
@@ -28,7 +33,5 @@ public abstract class BaseApi<T> {
                 .accept("application/hal+json")
                 .delete();
     }
-
-    public abstract Collection<T> getCollectionByLink(String link);
 
 }

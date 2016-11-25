@@ -31,8 +31,8 @@ public class DepartmentApiTest {
         Department dummyD2 = new Department();
         dummyD2.setName("Accounting");
 
-        dummyDepartment1 = client.getDepartmentApi().createResource(dummyD1);
-        dummyDepartment2 = client.getDepartmentApi().createResource(dummyD2);
+        dummyDepartment1 = client.getDepartmentApi().create(dummyD1);
+        dummyDepartment2 = client.getDepartmentApi().create(dummyD2);
     }
 
     @After
@@ -43,7 +43,7 @@ public class DepartmentApiTest {
 
     @Test
     public void testGetAllDepartments() {
-        Collection<Department> departments = client.getDepartmentApi().getAllDepartments();
+        Collection<Department> departments = client.getDepartmentApi().getAll();
 
         departments.forEach(r -> assertNotNull(r.getId()));
         departments.forEach(Assert::assertNotNull);
@@ -67,7 +67,7 @@ public class DepartmentApiTest {
     @Test
     public void testGetDepartmentByLink() {
         String link = dummyDepartment2.getId().getHref();
-        Department department = client.getDepartmentApi().getResourceByLink(link);
+        Department department = client.getDepartmentApi().getByLink(link);
 
         assertEquals(link, department.getId().getHref());
         assertEquals(dummyDepartment2, department);
@@ -78,7 +78,7 @@ public class DepartmentApiTest {
         Department d1 = new Department();
         d1.setName("Department HEYYO!");
 
-        Department createdDepartment = client.getDepartmentApi().createResource(d1);
+        Department createdDepartment = client.getDepartmentApi().create(d1);
         assertNotNull(createdDepartment);
 
         client.getUserApi().deleteResourceByLink(createdDepartment.getId().getHref());

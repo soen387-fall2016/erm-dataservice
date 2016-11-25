@@ -1,11 +1,15 @@
 package com.soen387.erm.dataservice.client.model.reservation;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.soen387.erm.dataservice.client.model.BaseEntity;
-import com.soen387.erm.dataservice.client.model.auth.User;
-import com.soen387.erm.dataservice.client.model.resource.AbstractResource;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -17,26 +21,32 @@ import javax.xml.bind.annotation.XmlRootElement;
 @JsonTypeName("reservation")
 public class Reservation extends BaseEntity {
 
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime startDateTime;
 
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime endDateTime;
     
     private Long reservationId;
-    
-    private User user;
 
-    private List<AbstractResource> resources;
+    @JsonProperty("user")
+    private String userLink;
+
+    @JsonProperty("resources")
+    private List<String> resourcesLinks;
 
     public Long getReservationId() {
         return reservationId;
     }
 
-    public User getUser() {
-        return user;
+    public String getUser() {
+        return userLink;
     }
 
-    public List<AbstractResource> getResources() {
-        return resources;
+    public List<String> getResources() {
+        return resourcesLinks;
     }
 
     public LocalDateTime getStartDateTime() {
@@ -47,12 +57,19 @@ public class Reservation extends BaseEntity {
         return endDateTime;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(String userLink) {
+        this.userLink = userLink;
     }
 
-    public void setResources(List<AbstractResource> resources) {
-        this.resources = resources;
+    public void setResources(List<String> resources) {
+        this.resourcesLinks = resources;
+    }
+
+    public void addResource(String resourceLink) {
+        if (this.resourcesLinks == null) {
+            this.resourcesLinks = new ArrayList<>();
+        }
+        this.resourcesLinks.add(resourceLink);
     }
 
     public void setStartDateTime(LocalDateTime startDateTime) {
@@ -73,14 +90,8 @@ public class Reservation extends BaseEntity {
             return false;
         }
         Reservation otherReservation = (Reservation) other;
-        // TODO find better way to do this
-        if ((otherReservation.getReservationId() == null || this.getReservationId() == null)) {
-            return false;
-        }
-        else if (!(otherReservation.getReservationId().equals(this.getReservationId()))) {
-            return false;
-        }
-        return true;
+        return !(otherReservation.getReservationId() == null || this.getReservationId() == null)
+                && otherReservation.getReservationId().equals(this.getReservationId());
     }
 
 }

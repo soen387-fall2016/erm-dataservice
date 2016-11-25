@@ -54,6 +54,7 @@ bintray {
 }
 
 dependencies {
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.5'
     compile 'org.glassfish.jersey.core:jersey-client:2.22.1'
     compile 'org.glassfish.jersey.media:jersey-media-json-jackson:2.22.1'
     compile 'com.sun.jersey:jersey-json:1.19'
@@ -68,5 +69,5 @@ dependencies {
     compile 'org.springframework:spring-aop:3.2.9.RELEASE'
     compile 'org.springframework:spring-webmvc:3.2.9.RELEASE'
     compile 'org.springframework:spring-web:3.2.9.RELEASE'
-    compile 'org.springframework.hateoas:spring-hateoas:0.16.0.RELEASE'
+    compile 'org.springframework.hateoas:spring-hateoas:0.20.0.RELEASE'
 }

@@ -1,5 +1,6 @@
 package com.soen387.erm.dataservice.client.model.auth;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.soen387.erm.dataservice.client.model.BaseEntity;
 
@@ -86,19 +87,19 @@ public class User extends BaseEntity {
         this.phone = phone;
     }
 
-    public void setDepartment(String departmentId) {
-        this.department = departmentId;
+    public void setDepartment(String departmentLink) {
+        this.department = departmentLink;
     }
 
     public void setRoles(List<String> roles) {
         this.roles = roles;
     }
 
-    public void addRole(String roleId) {
+    public void addRole(String roleLink) {
         if (this.roles == null) {
             this.roles = new ArrayList<>();
         }
-        this.roles.add(roleId);
+        this.roles.add(roleLink);
     }
 
     @Override

@@ -1,8 +1,6 @@
 package com.soen387.erm.dataservice.client;
 
-import com.soen387.erm.dataservice.client.api.DepartmentApi;
-import com.soen387.erm.dataservice.client.api.UserApi;
-import com.soen387.erm.dataservice.client.api.UserRoleApi;
+import com.soen387.erm.dataservice.client.api.*;
 import com.soen387.erm.dataservice.client.jaxrs.RestClient;
 
 import java.net.URISyntaxException;
@@ -32,5 +30,13 @@ public class DataserviceClient {
 
     public UserApi getUserApi() {
         return new UserApi(this.restClient);
+    }
+
+    public ReservationApi getReservationApi() {
+        return new ReservationApi(this.restClient);
+    }
+
+    public ResourceApi getResourceApi() {
+        return new ResourceApi(this.restClient);
     }
 }

@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by jeremybrown on 2016-11-01.
  */
-@Ignore
+//@Ignore
 public class UserApiTest {
 
     private static DataserviceClient client;
@@ -37,8 +37,8 @@ public class UserApiTest {
         dummyU2.setFirstName("SUPER");
         dummyU2.setLastName("USER");
 
-        dummyUser1 = client.getUserApi().createResource(dummyU1);
-        dummyUser2 = client.getUserApi().createResource(dummyU2);
+        dummyUser1 = client.getUserApi().create(dummyU1);
+        dummyUser2 = client.getUserApi().create(dummyU2);
     }
 
     @After
@@ -49,7 +49,7 @@ public class UserApiTest {
 
     @Test
     public void testGetAllUsers() {
-        Collection<User> users = client.getUserApi().getAllUsers();
+        Collection<User> users = client.getUserApi().getAll();
 
         users.forEach(r -> assertNotNull(r.getId()));
         users.forEach(Assert::assertNotNull);
@@ -70,7 +70,7 @@ public class UserApiTest {
     @Test
     public void testGetUserByLink() {
         String link = dummyUser2.getId().getHref();
-        User user = client.getUserApi().getResourceByLink(link);
+        User user = client.getUserApi().getByLink(link);
 
         assertEquals(link, user.getId().getHref());
         assertEquals(dummyUser2, user);
@@ -83,7 +83,7 @@ public class UserApiTest {
         u1.setFirstName("John");
         u1.setLastName("Smith");
 
-        User createdUser = client.getUserApi().createResource(u1);
+        User createdUser = client.getUserApi().create(u1);
         assertNotNull(createdUser);
 
         client.getUserApi().deleteResourceByLink(createdUser.getId().getHref());
@@ -94,13 +94,13 @@ public class UserApiTest {
         Department d1 = new Department();
         d1.setName("Department HEYYO!");
 
-        Department createdDepartment = client.getDepartmentApi().createResource(d1);
+        Department createdDepartment = client.getDepartmentApi().create(d1);
         assertNotNull(createdDepartment);
 
         UserRole role = new UserRole();
         role.setUserRoleHumanReadable("ROLE #2!");
 
-        UserRole createdRole = client.getUserRoleApi().createResource(role);
+        UserRole createdRole = client.getUserRoleApi().create(role);
         assertNotNull(createdRole);
 
         User u1 = new User();
@@ -110,12 +110,12 @@ public class UserApiTest {
         u1.setDepartment(createdDepartment.getId().getHref());
         u1.addRole(createdRole.getId().getHref());
 
-        User createdUser = client.getUserApi().createResource(u1);
+        User createdUser = client.getUserApi().create(u1);
         assertNotNull(createdUser);
 
         String departmentLink = createdUser.getLink("department").getHref();
         String rolesLink = createdUser.getLink("roles").getHref();
-        Department departmentFromUser = client.getDepartmentApi().getResourceByLink(departmentLink);
+        Department departmentFromUser = client.getDepartmentApi().getByLink(departmentLink);
         assertNotNull(departmentFromUser);
         Collection<UserRole> rolesFromUser = client.getUserRoleApi().getCollectionByLink(rolesLink);
         assertNotNull(rolesFromUser);

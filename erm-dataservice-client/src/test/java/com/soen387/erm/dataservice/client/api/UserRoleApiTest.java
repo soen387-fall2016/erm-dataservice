@@ -31,8 +31,8 @@ public class UserRoleApiTest {
         UserRole dummyUR2 = new UserRole();
         dummyUR2.setUserRoleHumanReadable("Role 2");
 
-        dummyUserRole1 = client.getUserRoleApi().createResource(dummyUR1);
-        dummyUserRole2 = client.getUserRoleApi().createResource(dummyUR2);
+        dummyUserRole1 = client.getUserRoleApi().create(dummyUR1);
+        dummyUserRole2 = client.getUserRoleApi().create(dummyUR2);
     }
 
     @After
@@ -43,7 +43,7 @@ public class UserRoleApiTest {
 
     @Test
     public void testGetAllUsersRoles() {
-        Collection<UserRole> roles = client.getUserRoleApi().getAllUserRoles();
+        Collection<UserRole> roles = client.getUserRoleApi().getAll();
 
         roles.forEach(r -> assertNotNull(r.getId()));
         roles.forEach(Assert::assertNotNull);
@@ -66,7 +66,7 @@ public class UserRoleApiTest {
     @Test
     public void testGetUserRoleByLink() {
         String link = dummyUserRole2.getId().getHref();
-        UserRole role = client.getUserRoleApi().getResourceByLink(link);
+        UserRole role = client.getUserRoleApi().getByLink(link);
 
         assertEquals(link, role.getId().getHref());
         assertEquals(dummyUserRole2, role);
@@ -77,7 +77,7 @@ public class UserRoleApiTest {
         UserRole role = new UserRole();
         role.setUserRoleHumanReadable("ROLE #2!");
 
-        UserRole createdRole = client.getUserRoleApi().createResource(role);
+        UserRole createdRole = client.getUserRoleApi().create(role);
         assertNotNull(createdRole);
 
         client.getUserRoleApi().deleteResourceByLink(createdRole.getId().getHref());

@@ -1,10 +1,9 @@
 package com.soen387.erm.dataservice.client.api;
 
-import com.soen387.erm.dataservice.client.model.BaseEntity;
-import com.soen387.erm.dataservice.client.model.reservation.Reservation;
 import com.soen387.erm.dataservice.client.jaxrs.HalResource;
 import com.soen387.erm.dataservice.client.jaxrs.RestClient;
-import org.springframework.hateoas.Resource;
+import com.soen387.erm.dataservice.client.model.BaseEntity;
+import com.soen387.erm.dataservice.client.model.reservation.Reservation;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
@@ -15,32 +14,39 @@ import java.util.Collection;
  */
 public class ReservationApi extends BaseApi<Reservation> {
 
-    protected String reservationsPathSuffix = "reservations/";
+    private static final String PATH_SUFFIX = "reservations/";
 
     public ReservationApi(RestClient restClient) {
         super(restClient);
     }
 
-    public Collection<Reservation> getAllReservations() {
-        HalResource<BaseEntity, Reservation> reservationResources = restClient.getRootTarget()
-                .path(reservationsPathSuffix)
+    @Override
+    public String getPathSuffix() {
+        return PATH_SUFFIX;
+    }
+
+    @Override
+    public Reservation create(Reservation resource) {
+        return restClient
+                .getRootTarget()
+                .path(getPathSuffix())
+                .request()
+                .post(Entity.json(resource), new GenericType<Reservation>() {});
+    }
+
+    @Override
+    public Collection<Reservation> getAll() {
+        HalResource<BaseEntity, Reservation> departmentResources = restClient.getRootTarget()
+                .path(getPathSuffix())
                 .request()
                 .accept("application/hal+json")
                 .get(new GenericType<HalResource<BaseEntity, Reservation>>() {});
 
-        return reservationResources.getContent();
+        return departmentResources.getContent();
     }
 
-    public Reservation getReservationById(Long id) {
-        return restClient
-                .getRootTarget()
-                .path(reservationsPathSuffix + id.toString())
-                .request()
-                .accept("application/hal+json")
-                .get(new GenericType<Reservation>() {});
-    }
-
-    public Reservation getResourceByLink(String link) {
+    @Override
+    public Reservation getByLink(String link) {
         return new RestClient(link)
                 .getRootTarget()
                 .request()
@@ -48,6 +54,7 @@ public class ReservationApi extends BaseApi<Reservation> {
                 .get(new GenericType<Reservation>() {});
     }
 
+    @Override
     public Collection<Reservation> getCollectionByLink(String link) {
         HalResource<BaseEntity, Reservation> collectionWrapper = new RestClient(link)
                 .getRootTarget()
@@ -59,13 +66,13 @@ public class ReservationApi extends BaseApi<Reservation> {
         return collectionWrapper.getContent();
     }
 
-    public Reservation createResource(Reservation reservation) {
+    public Reservation ReservationById(Long id) {
         return restClient
                 .getRootTarget()
-                .path(reservationsPathSuffix)
+                .path(getPathSuffix() + id)
                 .request()
-                .post(Entity.json(reservation), new GenericType<Reservation>() {});
+                .accept("application/hal+json")
+                .get(new GenericType<Reservation>() {});
     }
-
 
 }
