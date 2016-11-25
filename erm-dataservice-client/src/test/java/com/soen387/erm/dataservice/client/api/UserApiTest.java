@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by jeremybrown on 2016-11-01.
  */
-//@Ignore
+@Ignore
 public class UserApiTest {
 
     private static DataserviceClient client;

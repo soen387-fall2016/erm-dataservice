@@ -5,6 +5,7 @@ import com.soen387.erm.dataservice.client.model.auth.User;
 import com.soen387.erm.dataservice.client.model.reservation.Reservation;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ import static junit.framework.TestCase.assertNotNull;
 /**
  * Created by jeremybrown on 2016-11-25.
  */
+@Ignore
 public class ReservationApiTest {
 
     private static DataserviceClient client;
