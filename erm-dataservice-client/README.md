@@ -2,7 +2,7 @@
 
 ##### Java client library for erm-dataservice-server.
 
-[![Bintray](https://img.shields.io/bintray/v/soen387-fall2016/erm-maven/erm-dataservice-client.svg)](https://bintray.com/soen387-fall2016/erm-maven/erm-dataservice-client)
+[ ![Bintray](https://api.bintray.com/packages/soen387-fall2016/erm-maven/erm-dataservice-client/images/download.svg) ](https://bintray.com/soen387-fall2016/erm-maven/erm-dataservice-client/_latestVersion)
 
 ## Structure
 

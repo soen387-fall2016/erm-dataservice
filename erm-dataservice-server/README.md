@@ -2,7 +2,7 @@
 
 ##### Provides data storage & retrieval services to the SOEN 387 Fall 2016 Group Project
 
-[![Bintray](https://img.shields.io/bintray/v/soen387-fall2016/erm-maven/erm-dataservice-server.svg)](https://bintray.com/soen387-fall2016/erm-maven/erm-dataservice-server)
+[ ![Bintray](https://api.bintray.com/packages/soen387-fall2016/erm-maven/erm-dataservice-client/images/download.svg) ](https://bintray.com/soen387-fall2016/erm-maven/erm-dataservice-server/_latestVersion)
 
 ## How to run
 This is a gradle project which you can run using the included Gradle wrapper. It uses Spring Boot with a Tomcat server.
