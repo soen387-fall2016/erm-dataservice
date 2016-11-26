@@ -59,15 +59,8 @@ dependencies {
     compile 'org.glassfish.jersey.media:jersey-media-json-jackson:2.22.1'
     compile 'com.sun.jersey:jersey-json:1.19'
     compile 'com.sun.jersey.contribs:jersey-multipart:1.19'
-    compile 'com.sun.jersey.contribs:jersey-multipart:1.19'
-
-    compile group: 'junit', name: 'junit', version: '4.12'
-
-    compile 'org.springframework.plugin:spring-plugin-core:1.2.0.RELEASE'
-    compile 'org.springframework:spring-core:3.2.9.RELEASE'
-    compile 'org.springframework:spring-context:3.2.9.RELEASE'
-    compile 'org.springframework:spring-aop:3.2.9.RELEASE'
-    compile 'org.springframework:spring-webmvc:3.2.9.RELEASE'
-    compile 'org.springframework:spring-web:3.2.9.RELEASE'
     compile 'org.springframework.hateoas:spring-hateoas:0.20.0.RELEASE'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
 }
