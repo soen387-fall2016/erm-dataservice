@@ -60,6 +60,18 @@ public abstract class AbstractResource {
     }
 
     @Override
+    public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        }
+        if (!(other instanceof AbstractResource)) {
+            return false;
+        }
+        AbstractResource otherResource = (AbstractResource) other;
+        return this.getResourceId().equals((otherResource).getResourceId());
+    }
+
+    @Override
     public String toString() {
         return "AbstractResource " + getName();
     }

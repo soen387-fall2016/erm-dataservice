@@ -1,5 +1,6 @@
 package com.soen387.erm.dataservice.client.model.resource;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -9,38 +10,26 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "room")
 @JsonTypeName("room")
 public class Room extends AbstractResource {
-	 private String roomNumber;
 
-	    private Building building;
+    private String roomNumber;
 
-	    public String getRoomNumber() {
-	        return roomNumber;
-	    }
+    @JsonProperty("building")
+    private String buildingLink;
 
-	    public Building getBuilding() {
-	        return building;
-	    }
-	
-    
+    public String getRoomNumber() {
+        return roomNumber;
+    }
 
+    public String getBuildingLink() {
+        return buildingLink;
+    }
 
-    @Override
-    public boolean equals(Object other) {
-        if (other == null) {
-            return false;
-        }
-        if (!(other instanceof Room)) {
-            return false;
-        }
-        Room otherRoom = (Room) other;
-        //WIP temp
-        if ((otherRoom.getRoomNumber()== null || this.getRoomNumber() == null)) {
-            return false;
-        }
-        else if (!(otherRoom.getRoomNumber().equals(this.getRoomNumber()))) {
-            return false;
-        }
-        return true;
+    public void setRoomNumber(String roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    public void setBuildingLink(String buildingLink) {
+        this.buildingLink = buildingLink;
     }
 
 }

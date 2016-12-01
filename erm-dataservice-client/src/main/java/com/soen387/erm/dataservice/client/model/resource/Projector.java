@@ -13,48 +13,28 @@ import javax.xml.bind.annotation.XmlRootElement;
 @JsonTypeName("projector")
 public class Projector extends LocatableAbstractResource {
 
-	 private Dimensions resolution;
+    private Dimensions resolution;
 
-	    private Boolean dviInput;
+    private Boolean dviInput;
 
-	    private Boolean vgaInput;
+    private Boolean vgaInput;
 
-	    private Boolean hdmiInput;
+    private Boolean hdmiInput;
 
-	    public Dimensions getResolution() {
-	        return resolution;
-	    }
+    public Dimensions getResolution() {
+        return resolution;
+    }
 
-	    public Boolean getDviInput() {
-	        return dviInput;
-	    }
+    public Boolean getDviInput() {
+        return dviInput;
+    }
 
-	    public Boolean getVgaInput() {
-	        return vgaInput;
-	    }
+    public Boolean getVgaInput() {
+        return vgaInput;
+    }
 
-	    public Boolean getHdmiInput() {
-	        return hdmiInput;
-	    }
-
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == null) {
-            return false;
-        }
-        if (!(other instanceof Projector)) {
-            return false;
-        }
-        Projector otherProjector = (Projector) other;
-        //WIP
-        if ((otherProjector.getId()== null || this.getId() == null)) {
-            return false;
-        }
-        else if (!(otherProjector.getId().equals(this.getId()))) {
-            return false;
-        }
-        return true;
+    public Boolean getHdmiInput() {
+        return hdmiInput;
     }
 
 }

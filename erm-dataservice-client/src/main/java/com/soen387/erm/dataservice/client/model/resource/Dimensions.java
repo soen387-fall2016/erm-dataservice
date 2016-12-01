@@ -6,17 +6,18 @@ package com.soen387.erm.dataservice.client.model.resource;
 
 public class Dimensions {
 
-	    private int width;
+    private int width;
 
-	    private int height;
+    private int height;
 
-	    public int getWidth() {
+    public int getWidth() {
 	        return width;
 	    }
 
-	    public int getHeight() {
+    public int getHeight() {
 	        return height;
 	    }
-	}
+
+}
 
 

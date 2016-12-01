@@ -1,7 +1,5 @@
 package com.soen387.erm.dataservice.client.model.resource;
 
-import com.soen387.erm.dataservice.client.model.resource.ComputerOS.OsType;
-
 public class ComputerOS {
 	
 	private Long id;
@@ -23,6 +21,7 @@ public class ComputerOS {
     public String getLicense() {
         return license;
     }
+
 }
 
 

@@ -11,101 +11,83 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "computer")
 @JsonTypeName("computer")
 public class Computer extends LocatableAbstractResource {
-	 private String hostname;
 
-	    private String machineType;
+    private String hostname;
 
-	    private ComputerOS operatingSystem;
+    private String machineType;
 
-	    private String manufacturer;
+	private ComputerOS operatingSystem;
 
-	    private String model;
+	private String manufacturer;
 
-	    private Boolean dviOutput;
+	private String model;
 
-	    private Boolean vgaOutput;
+	private Boolean dviOutput;
 
-	    private Boolean hdmiOutput;
+	private Boolean vgaOutput;
 
-	    private Boolean speakers;
+	private Boolean hdmiOutput;
 
-	    private Boolean keyboard;
+	private Boolean speakers;
 
-	    private Boolean mouse;
+	private Boolean keyboard;
 
-	    private Boolean wirelessNetworking;
+	private Boolean mouse;
 
-	    private Boolean wiredNetworking;
+	private Boolean wirelessNetworking;
 
-	    public String getHostname() {
-	        return hostname;
-	    }
+	private Boolean wiredNetworking;
 
-	    public String getMachineType() {
-	        return machineType;
-	    }
+	public String getHostname() {
+		return hostname;
+	}
 
-	    public ComputerOS getOperatingSystem() {
-	        return operatingSystem;
-	    }
+	public String getMachineType() {
+		return machineType;
+	}
 
-	    public String getManufacturer() {
-	        return manufacturer;
-	    }
+	public ComputerOS getOperatingSystem() {
+		return operatingSystem;
+	}
 
-	    public String getModel() {
-	        return model;
-	    }
+	public String getManufacturer() {
+		return manufacturer;
+	}
 
-	    public Boolean getDviOutput() {
-	        return dviOutput;
-	    }
+	public String getModel() {
+		return model;
+	}
 
-	    public Boolean getVgaOutput() {
-	        return vgaOutput;
-	    }
+	public Boolean getDviOutput() {
+		return dviOutput;
+	}
 
-	    public Boolean getHdmiOutput() {
-	        return hdmiOutput;
-	    }
+	public Boolean getVgaOutput() {
+		return vgaOutput;
+	}
 
-	    public Boolean getSpeakers() {
-	        return speakers;
-	    }
+	public Boolean getHdmiOutput() {
+		return hdmiOutput;
+	}
 
-	    public Boolean getKeyboard() {
-	        return keyboard;
-	    }
+	public Boolean getSpeakers() {
+		return speakers;
+	}
 
-	    public Boolean getMouse() {
-	        return mouse;
-	    }
+	public Boolean getKeyboard() {
+		return keyboard;
+	}
 
-	    public Boolean getWirelessNetworking() {
-	        return wirelessNetworking;
-	    }
+	public Boolean getMouse() {
+		return mouse;
+	}
 
-	    public Boolean getWiredNetworking() {
-	        return wiredNetworking;
-	    }
+	public Boolean getWirelessNetworking() {
+		return wirelessNetworking;
+	}
 
-    @Override
-    public boolean equals(Object other) {
-        if (other == null) {
-            return false;
-        }
-        if (!(other instanceof Computer)) {
-            return false;
-        }
-        Computer otherComputer = (Computer) other;
-        //WIP
-        if ((otherComputer.getHostname() == null || this.hostname== null)) {
-            return false;
-        }
-        else if (!(otherComputer.getHostname().equals(this.getHostname()))) {
-            return false;
-        }
-        return true;
-    }
+	public Boolean getWiredNetworking() {
+		return wiredNetworking;
+	}
 
 }
