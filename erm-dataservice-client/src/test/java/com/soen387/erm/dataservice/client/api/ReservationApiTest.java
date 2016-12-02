@@ -25,8 +25,7 @@ public class ReservationApiTest {
 
     @Before
     public void setUp() throws Exception {
-        ClientConfig c = new ClientConfig("http://54.218.174.224:8080/api/");
-        client = new DataserviceClient(c);
+        client = new DataserviceClient();
 
         User dummyU1 = new User();
         dummyU1.setUsername("uzah");

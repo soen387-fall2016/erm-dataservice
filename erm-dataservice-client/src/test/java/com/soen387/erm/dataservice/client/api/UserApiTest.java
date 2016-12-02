@@ -63,7 +63,7 @@ public class UserApiTest {
         String username = "uzah";
         User user = client.getUserApi().getUserByUsername(username);
 
-        assertEquals("http://localhost:8080/api/users/uzah", user.getId().getHref());
+        assertEquals(client.getApiRootUrl() + "users/uzah", user.getId().getHref());
         assertEquals(dummyUser1, user);
     }
 

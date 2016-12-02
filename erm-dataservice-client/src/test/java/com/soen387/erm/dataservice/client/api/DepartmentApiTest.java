@@ -60,7 +60,7 @@ public class DepartmentApiTest {
         Department departmentResource = client.getDepartmentApi().getDepartmentById(departmentId);
 
         String departmentHref = departmentResource.getId().getHref();
-        assertEquals("http://localhost:8080/api/departments/1", departmentHref);
+        assertEquals(client.getApiRootUrl() + "departments/1", departmentHref);
         assertNotNull(departmentResource);
     }
 

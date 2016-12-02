@@ -59,7 +59,7 @@ public class UserRoleApiTest {
         Long userRoleId = 1L;
         UserRole role = client.getUserRoleApi().getUserRoleById(userRoleId);
 
-        assertEquals("http://localhost:8080/api/userRoles/1", role.getId().getHref());
+        assertEquals(client.getApiRootUrl() + "userRoles/1", role.getId().getHref());
         assertEquals(dummyUserRole1, role);
     }
 

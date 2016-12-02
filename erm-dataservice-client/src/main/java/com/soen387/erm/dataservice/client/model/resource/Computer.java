@@ -90,4 +90,55 @@ public class Computer extends LocatableAbstractResource {
 		return wiredNetworking;
 	}
 
+	public void setHostname(String hostname) {
+		this.hostname = hostname;
+	}
+
+	public void setMachineType(String machineType) {
+		this.machineType = machineType;
+	}
+
+	public void setOperatingSystem(ComputerOS operatingSystem) {
+		this.operatingSystem = operatingSystem;
+	}
+
+	public void setManufacturer(String manufacturer) {
+		this.manufacturer = manufacturer;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	public void setDviOutput(Boolean dviOutput) {
+		this.dviOutput = dviOutput;
+	}
+
+	public void setVgaOutput(Boolean vgaOutput) {
+		this.vgaOutput = vgaOutput;
+	}
+
+	public void setHdmiOutput(Boolean hdmiOutput) {
+		this.hdmiOutput = hdmiOutput;
+	}
+
+	public void setSpeakers(Boolean speakers) {
+		this.speakers = speakers;
+	}
+
+	public void setKeyboard(Boolean keyboard) {
+		this.keyboard = keyboard;
+	}
+
+	public void setMouse(Boolean mouse) {
+		this.mouse = mouse;
+	}
+
+	public void setWirelessNetworking(Boolean wirelessNetworking) {
+		this.wirelessNetworking = wirelessNetworking;
+	}
+
+	public void setWiredNetworking(Boolean wiredNetworking) {
+		this.wiredNetworking = wiredNetworking;
+	}
 }

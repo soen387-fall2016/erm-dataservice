@@ -37,4 +37,19 @@ public class Projector extends LocatableAbstractResource {
         return hdmiInput;
     }
 
+    public void setResolution(Dimensions resolution) {
+        this.resolution = resolution;
+    }
+
+    public void setDviInput(Boolean dviInput) {
+        this.dviInput = dviInput;
+    }
+
+    public void setVgaInput(Boolean vgaInput) {
+        this.vgaInput = vgaInput;
+    }
+
+    public void setHdmiInput(Boolean hdmiInput) {
+        this.hdmiInput = hdmiInput;
+    }
 }

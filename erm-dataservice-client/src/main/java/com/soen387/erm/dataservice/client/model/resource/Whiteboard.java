@@ -17,5 +17,8 @@ public class Whiteboard extends LocatableAbstractResource {
 	        return dimensions;
 	    }
 
+    public void setDimensions(Dimensions dimensions) {
+        this.dimensions = dimensions;
+    }
 }
 

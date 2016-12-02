@@ -10,6 +10,7 @@ import java.net.URISyntaxException;
  */
 public class DataserviceClient {
 
+    private ClientConfig clientConfig;
     private RestClient restClient;
 
     public DataserviceClient() throws URISyntaxException {
@@ -17,7 +18,12 @@ public class DataserviceClient {
     }
 
     public DataserviceClient(ClientConfig config) {
+        this.clientConfig = config;
         this.restClient = new RestClient(config.getBaseUriString());
+    }
+
+    public String getApiRootUrl() {
+        return clientConfig.getBaseUriString();
     }
 
     public UserRoleApi getUserRoleApi() {
