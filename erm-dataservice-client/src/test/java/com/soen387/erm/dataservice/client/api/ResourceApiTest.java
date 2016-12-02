@@ -2,10 +2,14 @@ package com.soen387.erm.dataservice.client.api;
 
 import com.soen387.erm.dataservice.client.DataserviceClient;
 import com.soen387.erm.dataservice.client.model.resource.*;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.util.Collection;
+
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 /**
@@ -16,9 +20,35 @@ public class ResourceApiTest {
 
     private static DataserviceClient client;
 
+    private Building dummyBuilding;
+
+    private Room dummyRoom;
+
     @Before
     public void setUp() throws Exception {
         client = new DataserviceClient();
+
+        Building building1 = new Building();
+        building1.setName("Hall");
+        building1.setDescription("Henry F. Hall Building");
+        building1.setAddress("2100 Bishop St., Montreal, Quebec, Canada");
+
+        dummyBuilding = (Building) client.getResourceApi().create(building1);
+
+        Room room1 = new Room();
+        room1.setName("Conference Room #1");
+        room1.setAvailable(false);
+        room1.setMoveable(false);
+        room1.setRoomNumber("CR1");
+//        room1.setBuildingLink(dummyBuilding.getId().getHref());
+
+        dummyRoom = (Room) client.getResourceApi().create(room1);
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        client.getResourceApi().deleteResourceByLink(dummyBuilding.getId().getHref());
+        client.getResourceApi().deleteResourceByLink(dummyRoom.getId().getHref());
     }
 
     @Test
@@ -36,7 +66,6 @@ public class ResourceApiTest {
         System.out.println("Address: " + createdBuilding.getAddress());
         System.out.println("Link: " + createdBuilding.getId().getHref());
 
-        // TODO fix link returned by API
         client.getResourceApi().deleteResourceByLink(createdBuilding.getId().getHref());
     }
 
@@ -59,7 +88,7 @@ public class ResourceApiTest {
         c.setWiredNetworking(true);
         c.setAvailable(true);
         c.setMoveable(true);
-//        c.setRoomLink();
+//        c.setRoomLink(dummyRoom.getId().getHref());
 
         Computer createdComputer = (Computer) client.getResourceApi().create(c);
         assertNotNull(createdComputer);
@@ -69,7 +98,7 @@ public class ResourceApiTest {
         System.out.println("Hostname: " + createdComputer.getHostname());
         System.out.println("Manufacturer: " + createdComputer.getManufacturer());
         System.out.println("Model: " + createdComputer.getModel());
-        System.out.println("etc.");
+//        System.out.println("Room link: " + createdComputer.getRoomLink());
 
         client.getResourceApi().deleteResourceByLink(createdComputer.getId().getHref());
     }
@@ -82,7 +111,7 @@ public class ResourceApiTest {
         r.setMoveable(false);
         r.setRoomNumber("CR1");
         r.setDescription("Conference room seating between 8 to 10 people, located on the 2nd floor.");
-//        r.setBuildingLink();
+//        r.setBuildingLink(dummyBuilding.getId().getHref());
 
         Room createdRoom = (Room) client.getResourceApi().create(r);
         assertNotNull(createdRoom);
@@ -91,6 +120,7 @@ public class ResourceApiTest {
         System.out.println("Available: " + createdRoom.getAvailable());
         System.out.println("Moveable: " + createdRoom.getMoveable());
         System.out.println("Room number: " + createdRoom.getRoomNumber());
+//        System.out.println("Building link: " + createdRoom.getBuildingLink());
 
         client.getResourceApi().deleteResourceByLink(createdRoom.getId().getHref());
     }
@@ -106,7 +136,7 @@ public class ResourceApiTest {
         p.setDviInput(true);
         p.setHdmiInput(false);
         p.setResolution(new Dimensions(1920, 1080));
-//        p.setRoomLink();
+//        p.setRoomLink(dummyRoom.getId().getHref());
 
         Projector createdProjector = (Projector) client.getResourceApi().create(p);
         assertNotNull(createdProjector);
@@ -119,6 +149,7 @@ public class ResourceApiTest {
         System.out.println("Vga input: " + createdProjector.getVgaInput());
         System.out.println("Dvi input: " + createdProjector.getDviInput());
         System.out.println("Hdmi input: " + createdProjector.getHdmiInput());
+//        System.out.println("Room link: " + createdProjector.getRoomLink());
 
         client.getResourceApi().deleteResourceByLink(createdProjector.getId().getHref());
     }
@@ -130,7 +161,7 @@ public class ResourceApiTest {
         w.setName("Whiteboard AXA");
         w.setAvailable(true);
         w.setMoveable(false);
-//        w.setRoomLink();
+//        w.setRoomLink(dummyRoom.getId().getHref());
 
         Whiteboard createdWhiteboard = (Whiteboard) client.getResourceApi().create(w);
         assertNotNull(w);
@@ -140,8 +171,42 @@ public class ResourceApiTest {
         System.out.println("Moveable: " + createdWhiteboard.getMoveable());
         System.out.println("Dimensions: " + createdWhiteboard.getDimensions().getWidth() + "x" +
                 createdWhiteboard.getDimensions().getHeight());
+//        System.out.println("Room link: " + createdWhiteboard.getRoomLink());
 
         client.getResourceApi().deleteResourceByLink(createdWhiteboard.getId().getHref());
     }
 
+    @Test
+    public void testGetAll() throws Exception {
+        Collection<AbstractResource> allResources = client.getResourceApi().getAll();
+        assertFalse(allResources.isEmpty());
+
+        for (AbstractResource r: allResources) {
+            System.out.println(r.getName());
+            System.out.println(r.getId().getHref());
+            System.out.println(r.getAvailable());
+            System.out.println(r.getDescription());
+        }
+    }
+
+    @Test
+    public void testGetByLink() throws Exception {
+        Building b = (Building) client.getResourceApi().getByLink(dummyBuilding.getId().getHref());
+        assertNotNull(b);
+
+        System.out.println(b.getId().getHref());
+        System.out.println(b.getName());
+        System.out.println(b.getDescription());
+    }
+
+    @Test
+    public void testGetResourceById() throws Exception {
+        System.out.println(dummyRoom.getResourceId());
+        Room r = (Room) client.getResourceApi().getResourceById(dummyRoom.getResourceId());
+        assertNotNull(r);
+
+        System.out.println(r.getId().getHref());
+        System.out.println(r.getName());
+        System.out.println(r.getDescription());
+    }
 }

@@ -9,7 +9,7 @@ import javax.persistence.Id;
  * Created by jeremybrown on 2016-10-17.
  */
 @Entity
-class ComputerOS {
+public class ComputerOS {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

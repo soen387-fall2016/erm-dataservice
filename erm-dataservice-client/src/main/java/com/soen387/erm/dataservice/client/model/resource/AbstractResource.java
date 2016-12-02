@@ -25,7 +25,7 @@ import com.soen387.erm.dataservice.client.model.BaseEntity;
 @JsonTypeName("resource")
 public class AbstractResource extends BaseEntity {
 
-    private long resourceID;
+    private long resourceId;
 
     private String name;
 
@@ -52,7 +52,7 @@ public class AbstractResource extends BaseEntity {
     }
 
     public Long getResourceId() {
-        return resourceID;
+        return resourceId;
     }
 
     public void setName(String name) {

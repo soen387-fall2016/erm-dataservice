@@ -1,6 +1,5 @@
 package com.soen387.erm.dataservice.client.api;
 
-import com.soen387.erm.dataservice.client.ClientConfig;
 import com.soen387.erm.dataservice.client.DataserviceClient;
 import com.soen387.erm.dataservice.client.model.auth.User;
 import com.soen387.erm.dataservice.client.model.reservation.Reservation;
@@ -74,6 +73,6 @@ public class ReservationApiTest {
         System.out.println("Department: " + userFromReservation.getPhone());
         System.out.println("Department: " + userFromReservation.getPasswordEncrypted());
 
-//        client.getUserApi().deleteResourceByLink(createdReservation.getId().getHref());
+        client.getUserApi().deleteResourceByLink(createdReservation.getId().getHref());
     }
 }

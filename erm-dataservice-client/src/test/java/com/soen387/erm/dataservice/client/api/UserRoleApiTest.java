@@ -52,14 +52,12 @@ public class UserRoleApiTest {
         assertTrue(roles.contains(dummyUserRole2));
     }
 
-    @Ignore
     @Test
     public void testGetUserRoleById() {
-        // TODO fix this test
-        Long userRoleId = 1L;
-        UserRole role = client.getUserRoleApi().getUserRoleById(userRoleId);
+        long roleId = dummyUserRole1.getRoleId();
+        UserRole role = client.getUserRoleApi().getUserRoleById(roleId);
 
-        assertEquals(client.getApiRootUrl() + "userRoles/1", role.getId().getHref());
+        assertEquals(client.getApiRootUrl() + "userRoles/" + roleId, role.getId().getHref());
         assertEquals(dummyUserRole1, role);
     }
 

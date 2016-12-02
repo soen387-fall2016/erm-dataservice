@@ -23,7 +23,7 @@ I don't believe we even have to write a schema, but it will be possible to expor
 
 ### Database
 The service uses an embedded H2 database when running the ```bootRun``` and ```test``` tasks. This is only an in-memory database, so nothing is persisted.
-When the project is built as a JAR, it can be run with the CLI flags ```--spring.profiles.active=prod --spring.datasource.password=<mysql-password>``` to run using an existing MySQL/MariaDB database.
+When the project is built as a JAR, it can be run with the CLI flags ```--spring.profiles.active=prod --spring.datasource.password=<mysql-password> --spring.datasource.url=<mysql-url> --spring.datasource.username=<mysql-user>``` to run using an existing MySQL/MariaDB database.
 
 ### API
 Spring Boot is also set up to expose all of the entites as REST API endpoints automatically.
@@ -38,9 +38,12 @@ Build on Linux / macOS: ```./gradlew build```.
 
 Build on Windows: ```gradlew.bat build```.
 
-Set the environment variable MYSQL_ROOT_PASSWORD to the password of your MySQL/MariaDB server.
+Set the following environment variables:
+ - MYSQL_HOST to the host address, port & database path of your DB server
+ - MYSQL_USER to the username for your DB server
+ - MYSQL_PASSWORD to the password of your MySQL/MariaDB server
 
-You can then run the JAR with ```java -jar build/libs/erm-dataservice-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod --spring.datasource.password=${MYSQL_ROOT_PASSWORD}```.
+You can then run the JAR with ```java -jar build/libs/erm-dataservice-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod --spring.datasource.password=${MYSQL_PASSWORD} --spring.datasource.url=${MYSQL_HOST} --spring.datasource.username=${MYSQL_USER}```.
 ** Replace ```0.0.1``` with version of the file JAR found in build/libs.
 
 ### Docker

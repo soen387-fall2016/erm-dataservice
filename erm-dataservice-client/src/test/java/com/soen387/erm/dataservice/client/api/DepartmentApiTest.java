@@ -52,15 +52,13 @@ public class DepartmentApiTest {
         assertTrue(departments.contains(dummyDepartment2));
     }
 
-    @Ignore
     @Test
     public void testGetDepartmentById() {
-        // TODO fix this test
-        Long departmentId = 1L;
+        long departmentId = dummyDepartment1.getDepartmentId();
         Department departmentResource = client.getDepartmentApi().getDepartmentById(departmentId);
 
         String departmentHref = departmentResource.getId().getHref();
-        assertEquals(client.getApiRootUrl() + "departments/1", departmentHref);
+        assertEquals(client.getApiRootUrl() + "departments/" + departmentId, departmentHref);
         assertNotNull(departmentResource);
     }
 
