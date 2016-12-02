@@ -19,4 +19,9 @@ public class Whiteboard extends LocatableAbstractResource {
     public Dimensions getDimensions() {
         return dimensions;
     }
+
+    @Override
+    public String getType() {
+        return "whiteboard";
+    }
 }

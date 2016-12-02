@@ -59,6 +59,8 @@ public abstract class AbstractResource {
         return resourceId;
     }
 
+    public abstract String getType();
+
     @Override
     public boolean equals(Object other) {
         if (other == null) {

@@ -25,4 +25,9 @@ public class Room extends AbstractResource {
     public Building getBuilding() {
         return building;
     }
+
+    @Override
+    public String getType() {
+        return "room";
+    }
 }

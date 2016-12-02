@@ -18,4 +18,9 @@ public class Building extends AbstractResource {
     public String getAddress() {
         return address;
     }
+
+    @Override
+    public String getType() {
+        return "building";
+    }
 }

@@ -91,4 +91,9 @@ public class Computer extends LocatableAbstractResource {
     public Boolean getWiredNetworking() {
         return wiredNetworking;
     }
+
+    @Override
+    public String getType() {
+        return "computer";
+    }
 }

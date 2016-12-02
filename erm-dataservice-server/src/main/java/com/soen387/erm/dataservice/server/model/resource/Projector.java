@@ -38,4 +38,8 @@ public class Projector extends LocatableAbstractResource {
         return hdmiInput;
     }
 
+    @Override
+    public String getType() {
+        return "projector";
+    }
 }
