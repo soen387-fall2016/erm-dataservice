@@ -19,15 +19,14 @@ This will run the server on your machine where you can access it at ```http://lo
 This project uses Spring Boot which makes setup/configuration very easy.
 
 All entities are configured as Java classes, and Hibernate takes care of the database mappings.
-I don't believe we even have to write a schema, but it will be possible to export it from the running database if need be.
+There is no need to mess with the database schema, since it is created & updated automatically by Hibernate. However it is possible to export it using regular MySQL ways of dumping database data.
 
 ### Database
 The service uses an embedded H2 database when running the ```bootRun``` and ```test``` tasks. This is only an in-memory database, so nothing is persisted.
 When the project is built as a JAR, it can be run with the CLI flags ```--spring.profiles.active=prod --spring.datasource.password=<mysql-password> --spring.datasource.url=<mysql-url> --spring.datasource.username=<mysql-user>``` to run using an existing MySQL/MariaDB database.
 
 ### API
-Spring Boot is also set up to expose all of the entites as REST API endpoints automatically.
-Everything is configurable, it just hasn't been done yet.
+Spring Boot is set up to expose all of the entites as REST API endpoints automatically using the [spring-data-rest](https://github.com/spring-projects/spring-data-rest) plugin.
 
 
 ## How to build
@@ -45,7 +44,7 @@ Set the following environment variables:
  - `MYSQL_PASSWORD` to the password of your MySQL/MariaDB server
 
 You can then run the JAR with ```java -jar build/libs/erm-dataservice-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod --spring.datasource.password=${MYSQL_PASSWORD} --spring.datasource.url=${MYSQL_HOST} --spring.datasource.username=${MYSQL_USER}```.
-** Replace ```0.0.1``` with version of the file JAR found in build/libs.
+** Replace `0.0.1` with version of the file JAR found in build/libs.
 
 ### Docker
 Docker builds are pushed to the Docker Hub with every commit passing tests.
