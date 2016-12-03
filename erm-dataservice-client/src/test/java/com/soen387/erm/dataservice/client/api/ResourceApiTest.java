@@ -15,7 +15,7 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Created by jeremybrown on 2016-11-30.
  */
-@Ignore
+//@Ignore
 public class ResourceApiTest {
 
     private static DataserviceClient client;
@@ -47,8 +47,8 @@ public class ResourceApiTest {
 
     @After
     public void tearDown() throws Exception {
-        client.getResourceApi().deleteResourceByLink(dummyBuilding.getId().getHref());
-        client.getResourceApi().deleteResourceByLink(dummyRoom.getId().getHref());
+//        client.getResourceApi().deleteResourceByLink(dummyBuilding.getId().getHref());
+//        client.getResourceApi().deleteResourceByLink(dummyRoom.getId().getHref());
     }
 
     @Test
@@ -66,7 +66,7 @@ public class ResourceApiTest {
         System.out.println("Address: " + createdBuilding.getAddress());
         System.out.println("Link: " + createdBuilding.getId().getHref());
 
-        client.getResourceApi().deleteResourceByLink(createdBuilding.getId().getHref());
+//        client.getResourceApi().deleteResourceByLink(createdBuilding.getId().getHref());
     }
 
     @Test
@@ -100,7 +100,7 @@ public class ResourceApiTest {
         System.out.println("Model: " + createdComputer.getModel());
 //        System.out.println("Room link: " + createdComputer.getRoomLink());
 
-        client.getResourceApi().deleteResourceByLink(createdComputer.getId().getHref());
+//        client.getResourceApi().deleteResourceByLink(createdComputer.getId().getHref());
     }
 
     @Test
@@ -122,7 +122,7 @@ public class ResourceApiTest {
         System.out.println("Room number: " + createdRoom.getRoomNumber());
 //        System.out.println("Building link: " + createdRoom.getBuildingLink());
 
-        client.getResourceApi().deleteResourceByLink(createdRoom.getId().getHref());
+//        client.getResourceApi().deleteResourceByLink(createdRoom.getId().getHref());
     }
 
     @Test
@@ -151,7 +151,7 @@ public class ResourceApiTest {
         System.out.println("Hdmi input: " + createdProjector.getHdmiInput());
 //        System.out.println("Room link: " + createdProjector.getRoomLink());
 
-        client.getResourceApi().deleteResourceByLink(createdProjector.getId().getHref());
+//        client.getResourceApi().deleteResourceByLink(createdProjector.getId().getHref());
     }
 
     @Test
@@ -173,7 +173,7 @@ public class ResourceApiTest {
                 createdWhiteboard.getDimensions().getHeight());
 //        System.out.println("Room link: " + createdWhiteboard.getRoomLink());
 
-        client.getResourceApi().deleteResourceByLink(createdWhiteboard.getId().getHref());
+//        client.getResourceApi().deleteResourceByLink(createdWhiteboard.getId().getHref());
     }
 
     @Test

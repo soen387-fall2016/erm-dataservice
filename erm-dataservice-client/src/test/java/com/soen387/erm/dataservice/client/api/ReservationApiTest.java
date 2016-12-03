@@ -69,9 +69,9 @@ public class ReservationApiTest {
         System.out.println("Username: " + userFromReservation.getUsername());
         System.out.println("Name: " + userFromReservation.getFirstName() + " " + userFromReservation.getLastName());
         System.out.println("Department: " + userFromReservation.getDepartment());
-        System.out.println("Department: " + userFromReservation.getEmail());
-        System.out.println("Department: " + userFromReservation.getPhone());
-        System.out.println("Department: " + userFromReservation.getPasswordEncrypted());
+        System.out.println("Email: " + userFromReservation.getEmail());
+        System.out.println("Phone: " + userFromReservation.getPhone());
+        System.out.println("Encrypted password: " + userFromReservation.getPasswordEncrypted());
 
         client.getUserApi().deleteResourceByLink(createdReservation.getId().getHref());
     }
