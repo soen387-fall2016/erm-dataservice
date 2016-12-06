@@ -15,7 +15,7 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Created by jeremybrown on 2016-11-30.
  */
-//@Ignore
+@Ignore
 public class ResourceApiTest {
 
     private static DataserviceClient client;
