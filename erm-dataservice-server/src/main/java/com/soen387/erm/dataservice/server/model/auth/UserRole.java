@@ -50,7 +50,7 @@ public class UserRole extends BaseEntity {
             return false;
         }
         UserRole otherUserRole = (UserRole) other;
-        // TODO find better way to do this
         return otherUserRole.getUserRoleHumanReadable().equals(this.getUserRoleHumanReadable());
     }
 }
+

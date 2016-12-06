@@ -30,7 +30,7 @@ public class RestClient {
     public RestClient(String targetUrl) {
         Client client = ClientBuilder.newBuilder().build();
         client.property(ClientProperties.CONNECT_TIMEOUT, 200);
-        client.property(ClientProperties.READ_TIMEOUT, 700);
+        client.property(ClientProperties.READ_TIMEOUT, 1000);
 
         JacksonJsonProvider customRepresentationTypeProvider = new CustomRepresentationTypeProvider();
         customRepresentationTypeProvider.setMapper(getHallMapper());

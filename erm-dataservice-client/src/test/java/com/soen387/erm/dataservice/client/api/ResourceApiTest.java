@@ -15,7 +15,7 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Created by jeremybrown on 2016-11-30.
  */
-@Ignore
+//@Ignore
 public class ResourceApiTest {
 
     private static DataserviceClient client;
@@ -110,7 +110,9 @@ public class ResourceApiTest {
         r.setAvailable(false);
         r.setMoveable(false);
         r.setRoomNumber("CR1");
-        r.setDescription("Conference room seating between 8 to 10 people, located on the 2nd floor.");
+        r.setCapacity(10);
+        r.setDimensions(new Dimensions(15, 20));
+        r.setDescription("Conference room seating up to 10 people, located on the 2nd floor.");
 //        r.setBuildingLink(dummyBuilding.getId().getHref());
 
         Room createdRoom = (Room) client.getResourceApi().create(r);
@@ -120,6 +122,9 @@ public class ResourceApiTest {
         System.out.println("Available: " + createdRoom.getAvailable());
         System.out.println("Moveable: " + createdRoom.getMoveable());
         System.out.println("Room number: " + createdRoom.getRoomNumber());
+        System.out.println("Capacity: " + createdRoom.getCapacity());
+        System.out.println("Dimensions: " + createdRoom.getDimensions().getWidth() + "x" +
+                createdRoom.getDimensions().getHeight());
 //        System.out.println("Building link: " + createdRoom.getBuildingLink());
 
 //        client.getResourceApi().deleteResourceByLink(createdRoom.getId().getHref());

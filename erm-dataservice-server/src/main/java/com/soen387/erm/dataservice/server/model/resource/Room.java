@@ -18,6 +18,11 @@ public class Room extends AbstractResource {
     @ManyToOne
     private Building building;
 
+    private int capacity;
+
+    @Embedded
+    private Dimensions dimensions;
+
     public String getRoomNumber() {
         return roomNumber;
     }
@@ -29,5 +34,13 @@ public class Room extends AbstractResource {
     @Override
     public String getType() {
         return "room";
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public Dimensions getDimensions() {
+        return dimensions;
     }
 }
